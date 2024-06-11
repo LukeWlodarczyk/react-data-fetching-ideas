@@ -5,6 +5,7 @@ import BooksStandard from "./books/BooksStandard";
 import BooksUseSWR from "./books/BooksUseSWR";
 import BooksWrapPromiseSuspense from "./books/BooksWrapPromiseSuspense";
 import BooksUseSWRSuspense from "./books/BooksUseSWRSuspense";
+import BooksSuspenseUse from "./books/BooksSuspenseUse";
 
 export default function App() {
   return (
@@ -33,6 +34,13 @@ export default function App() {
           <h2>useSWR&Suspense</h2>
           <Suspense fallback={<p>Loading books...</p>}>
             <BooksUseSWRSuspense />
+          </Suspense>
+        </div>
+        
+        <div style={{ minHeight: 90 }}>
+          <h2>Suspense&Use</h2>
+          <Suspense fallback={<p>Loading books...</p>}>
+            <BooksSuspenseUse />
           </Suspense>
         </div>
       </div>
