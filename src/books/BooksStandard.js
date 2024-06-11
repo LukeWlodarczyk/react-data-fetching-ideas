@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
+import Loader from "../Loader";
+
 import { fetchBooks } from "../api/books";
 
 const Books = () => {
@@ -23,7 +25,7 @@ const Books = () => {
   }, []);
 
   if(isLoading) {
-    return <p>Loading books...</p>;
+    return <Loader />;
   }
 
   return (
