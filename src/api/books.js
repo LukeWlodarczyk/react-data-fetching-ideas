@@ -1,6 +1,6 @@
 const BOOKS_MOCK = [
-  { id: 1, name: "Hello" },
-  { id: 2, name: "World" },
+  { id: 1, name: "Harry Potter and the Philosopher's Stone" },
+  { id: 2, name: "The Lord of the Rings" },
 ];
 
 const pseudoRanodmDelay = () => Math.floor(Math.random() * 8) * 1000;
