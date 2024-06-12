@@ -13,6 +13,7 @@ import BooksUseSWR from "./books/BooksUseSWR";
 import BooksUseQuery from "./books/BooksUseQuery";
 import BooksWrapPromiseSuspense from "./books/BooksWrapPromiseSuspense";
 import BooksUseSWRSuspense from "./books/BooksUseSWRSuspense";
+import BooksUseSuspenseQuery from "./books/BooksUseSuspenseQuery";
 import BooksSuspenseUse from "./books/BooksSuspenseUse";
 
 const queryClient = new QueryClient();
@@ -52,6 +53,15 @@ export default function App() {
           <Suspense fallback={<Loader/ >}>
             <BooksUseSWRSuspense />
           </Suspense>
+        </div>
+
+        <div style={{ minHeight: 90 }}>
+          <QueryClientProvider client={queryClient}>
+              <h2>useSuspenseQuery&Suspense</h2>
+              <Suspense fallback={<Loader/ >}>
+                <BooksUseSuspenseQuery />
+              </Suspense>
+          </QueryClientProvider>
         </div>
         
         <div style={{ minHeight: 90 }}>
