@@ -55,7 +55,7 @@ export default function App() {
         </div>
         
         <div style={{ minHeight: 90 }}>
-          <h2>Suspense&Use</h2>
+          <h2>Use&Suspense</h2>
           <Suspense fallback={<Loader/ >}>
             <BooksSuspenseUse />
           </Suspense>
