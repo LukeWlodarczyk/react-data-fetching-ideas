@@ -1,13 +1,21 @@
 import { Suspense } from "react";
 import "./styles.css";
 
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query';
+
 import Loader from './Loader'
 
 import BooksStandard from "./books/BooksStandard";
 import BooksUseSWR from "./books/BooksUseSWR";
+import BooksUseQuery from "./books/BooksUseQuery";
 import BooksWrapPromiseSuspense from "./books/BooksWrapPromiseSuspense";
 import BooksUseSWRSuspense from "./books/BooksUseSWRSuspense";
 import BooksSuspenseUse from "./books/BooksSuspenseUse";
+
+const queryClient = new QueryClient();
 
 export default function App() {
   return (
@@ -22,7 +30,14 @@ export default function App() {
 
         <div style={{ minHeight: 90 }}>
           <h2>useSWR</h2>
-            <BooksUseSWR />
+          <BooksUseSWR />
+        </div>
+
+        <div style={{ minHeight: 90 }}>
+          <QueryClientProvider client={queryClient}>
+              <h2>useQuery</h2>
+              <BooksUseQuery />
+          </QueryClientProvider>
         </div>
 
         <div style={{ minHeight: 90 }}>

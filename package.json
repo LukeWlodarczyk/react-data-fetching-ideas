@@ -5,6 +5,7 @@
   "keywords": [],
   "main": "src/index.tsx",
   "dependencies": {
+    "@tanstack/react-query": "^5.44.0",
     "react": "^19.0.0-rc-6230622a1a-20240610",
     "react-dom": "^19.0.0-rc-6230622a1a-20240610",
     "react-scripts": "^5.0.0",
