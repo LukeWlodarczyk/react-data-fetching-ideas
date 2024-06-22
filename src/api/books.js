@@ -3,17 +3,12 @@ const BOOKS_MOCK = [
   { id: 2, name: "The Lord of the Rings" },
 ];
 
-const pseudoRanodmDelay = () => Math.floor(Math.random() * 8) * 1000;
+const BOOKS_API_URL = 'https://wolnelektury.pl/api/authors/platon/books/';
 
 export const fetchBooks = () => {
-  return new Promise((res, rej) =>
-    setTimeout(() => {
-      // if (Math.random() < 0.5) res(BOOKS_MOCK);
-      // rej('Error while fetching books')
-
-      res(BOOKS_MOCK);
-    }, pseudoRanodmDelay())
-  );
+  return fetch(BOOKS_API_URL, { method: 'GET' })
+          .then(res => res.json())
+          .then(data => data.slice(0, 2))
 };
 
 export const fetchBooksData = () => wrapPromise(fetchBooks());

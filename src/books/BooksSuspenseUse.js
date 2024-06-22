@@ -11,7 +11,7 @@ const Books = () => {
   return (
     <ul>
       {booksResource.map((book) => (
-        <li key={book.id}>{book.name}</li>
+        <li key={book.slug}>{book.title}</li>
       ))}
     </ul>
   );
