@@ -1,11 +1,15 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 
-import Loader from "../Loader";
+import ErrorMessage from '../ErrorMessage';
 
 import { fetchBooks } from "../api/books";
 
 const Books = () => {
-  const { data: books } = useSuspenseQuery({ queryKey: ['/api/books'], queryFn: fetchBooks });
+  const { data: books, isError } = useSuspenseQuery({ queryKey: ['/api/books'], queryFn: fetchBooks });
+
+  if (isError) {
+    return <ErrorMessage />;
+  }
 
   return (
     <ul>

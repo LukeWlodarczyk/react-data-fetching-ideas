@@ -1,14 +1,19 @@
 import useSWR from 'swr'
 
 import Loader from "../Loader";
+import ErrorMessage from '../ErrorMessage';
 
 import { fetchBooks } from "../api/books";
 
 const Books = () => {
-  const { data: books, isLoading } = useSWR('/api/books', fetchBooks);
+  const { data: books, isLoading, error } = useSWR('/api/books', fetchBooks);
 
   if (isLoading) {
     return <Loader />;
+  }
+
+  if (error) {
+    return <ErrorMessage />;
   }
 
   return (

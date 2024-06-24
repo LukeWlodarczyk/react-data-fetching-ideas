@@ -1,14 +1,19 @@
 import { useQuery } from '@tanstack/react-query';
 
 import Loader from "../Loader";
+import ErrorMessage from '../ErrorMessage';
 
 import { fetchBooks } from "../api/books";
 
 const Books = () => {
-  const { data: books, isPending: isLoading } = useQuery({ queryKey: ['/api/books'], queryFn: fetchBooks });
+  const { data: books, isPending: isLoading, isError } = useQuery({ queryKey: ['/api/books'], queryFn: fetchBooks });
 
   if (isLoading) {
     return <Loader />;
+  }
+
+  if (isError) {
+    return <ErrorMessage />;
   }
 
   return (
