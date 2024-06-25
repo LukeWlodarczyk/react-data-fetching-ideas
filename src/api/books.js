@@ -1,14 +1,19 @@
-const BOOKS_MOCK = [
-  { id: 1, name: "Harry Potter and the Philosopher's Stone" },
-  { id: 2, name: "The Lord of the Rings" },
-];
 
-const BOOKS_API_URL = 'https://wolnelektury.pl/api/authors/platon/books/';
+const getBooksApiAuthor = author => `https://openlibrary.org/search/authors.json?q=${author}`;
 
-export const fetchBooks = () => {
-  return fetch(BOOKS_API_URL, { method: 'GET' })
-          .then(res => res.json())
-          .then(data => data.slice(0, 2))
+const getBooksApiAuthorWorks = authorId => `https://openlibrary.org/authors/${authorId}/works.json`;
+
+
+export const fetchBooks = async ({ author = 'platon' }) => {
+  const authorRes = await fetch(getBooksApiAuthor(author), { method: 'GET' });
+  const authorData = await authorRes.json();
+
+  const authorId = authorData.docs[0].key;
+
+  const authorWorksRes = await fetch(getBooksApiAuthorWorks(authorId), { method: 'GET' });
+  const authorWorksData = await authorWorksRes.json();
+
+  return authorWorksData.entries.slice(0, 2);
 };
 
 export const fetchBooksData = () => wrapPromise(fetchBooks());
