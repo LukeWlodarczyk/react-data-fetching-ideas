@@ -4,17 +4,40 @@ const getBooksApiAuthor = author => `https://openlibrary.org/search/authors.json
 const getBooksApiAuthorWorks = authorId => `https://openlibrary.org/authors/${authorId}/works.json`;
 
 
-export const fetchBooks = async ({ author = 'platon' }) => {
+export const AUTHOR_NOT_FOUND_CODE = 'AUTHOR NOT FOUND';
+export const BOOKS_NOT_FOUND_CODE = 'BOOKS NOT FOUND';
+
+export const fetchAuthors = async ({ author }) => {
   const authorRes = await fetch(getBooksApiAuthor(author), { method: 'GET' });
   const authorData = await authorRes.json();
 
-  const authorId = authorData.docs[0].key;
+  if (authorData.numFound === 0) {
+    throw { status: 404, code: AUTHOR_NOT_FOUND_CODE };
+  }
 
+  return authorData.docs;
+};
+
+export const fetchBooks = async ({ authorId }) => {
   const authorWorksRes = await fetch(getBooksApiAuthorWorks(authorId), { method: 'GET' });
   const authorWorksData = await authorWorksRes.json();
 
-  return authorWorksData.entries.slice(0, 2);
+  if (authorWorksData.size === 0) {
+    throw { status: 404, code: BOOKS_NOT_FOUND_CODE };
+  }
+
+  return authorWorksData.entries;
 };
+
+export const fetchBooksByAuthor = async (author = 'platon') => {
+  const authors = await fetchAuthors({ author });
+
+  const firstAuthorId = authors[0].key;
+
+  const books = await fetchBooks({ authorId: firstAuthorId });
+
+  return books.slice(0, 2);
+}
 
 export const fetchBooksData = () => wrapPromise(fetchBooks());
 
