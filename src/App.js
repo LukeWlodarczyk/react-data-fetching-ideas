@@ -8,7 +8,7 @@ import {
 
 import Loader from './Loader'
 
-import BooksStandard from "./books/BooksStandard";
+import BooksStandard from "./books/BooksStandard/BooksStandard";
 import BooksUseSWR from "./books/BooksUseSWR";
 import BooksUseQuery from "./books/BooksUseQuery";
 import BooksWrapPromiseSuspense from "./books/BooksWrapPromiseSuspense";
