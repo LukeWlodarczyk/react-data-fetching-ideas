@@ -1,3 +1,3 @@
-const ErrorMessage = () => <p>Something went wrong :(</p>
+const ErrorMessage = (message = 'Something went wrong :(') => <p>{message}</p>;
 
 export default ErrorMessage;
