@@ -6,19 +6,15 @@ import BooksList from './BooksList';
 import useBooks from "./useBooks";
 
 const Books = () => {
-  const { books, isLoading, isApiError, author, onChangeAuthor } = useBooks();
+  const { books, hasBooks, isLoading, isApiError, title, onChangeTitle } = useBooks();
 
   return (
     <div>
-      <input name='author' value={author} onChange={onChangeAuthor} />
-      <p>Suggestions</p>
-      <ul>
-        {isLoading ? <Loader /> : <BooksList books={books} />}
-        {(isApiError && !isLoading) && <ErrorMessage />}
-        {/* {(!isApiError && author) && booksList} */}
-        {!author && <p>Type in author name</p>}
-        {/* {author && !isApiError && !hasBooks && !isLoading && !isAuthorError && <Loader />} */}
-      </ul>
+      <input name='title' value={title} onChange={onChangeTitle} />
+      {isLoading &&  <Loader /> }
+      {hasBooks && <BooksList books={books} />}
+      {isApiError && <ErrorMessage />}
+      {!title && <p>Type in book title</p>}
     </div>
   );
 };
