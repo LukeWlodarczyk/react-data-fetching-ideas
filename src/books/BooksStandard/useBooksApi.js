@@ -1,39 +1,89 @@
 import { useState, useEffect, useCallback } from "react";
 
 import { fetchBooksByTitle } from "../../api/books";
+import useAbortController from "./useAbortController";
+
+function _debounce(f, defaultTime = 0) {
+  let timer = null;
+  let time = defaultTime
+
+  const debounced = (...args) => {
+    if (time === 0) return f(...args);
+    
+    return new Promise((resolve) => {
+      clearTimeout(timer);
+      timer = setTimeout(
+        () => resolve(f(...args)),
+        time,
+      );
+    });
+  };
+
+  debounced.cancel = () => {
+    console.log('cancel', timer)
+    clearTimeout(timer);
+  }
+
+  debounced.setTime = (msec) => {
+    time = msec;
+    return debounced;
+  }
+
+  return debounced;
+}
+
+const debouncedFetchBooksByTitle = _debounce(fetchBooksByTitle);
 
 const useBooksApi = (title) => {
     const [books, setBooks] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
+
+    const abortController = useAbortController();
+
+    const setInitialState = () => {
+      setError(null);
+      setBooks([]);
+    }
   
-    const getBooksByTitle = useCallback(async (title, { signal } = {}) => {
+    const getBooksByTitle = useCallback(async (title, { ac = new AbortController, debounce = 0, abortParallel = false } = {}) => {
+      setInitialState();
+
+      if (title.trim().length === 0 || abortParallel) {
+        console.log('abort')
+        abortController.abortAll();
+      }
+
+      if (title.trim().length === 0 && debounce) {
+        console.log('empty')
+        return debouncedFetchBooksByTitle.cancel();
+      }
+
+      abortController.add(ac);
+
+      const fetch = debounce ? debouncedFetchBooksByTitle.setTime(debounce) : fetchBooksByTitle;
+
       try {
-        setError(null);
-        setIsLoading(true);
-        const books = await fetchBooksByTitle(title, { signal });
+        console.log('start')
+        const books = await fetch(title, { signal: ac.signal });
         setBooks(books);
       } catch (error) {
-        if (signal && signal.aborted) return;
-        setError(error);
-        setBooks([]);
+        if (!abortController.isAborted(ac)) setError(error);
       } finally {
-        if (signal && signal.aborted) return;
-        setIsLoading(false);
+        abortController.abort(ac)
       }
     }, [])
   
     useEffect(() => {
-      const ac = new AbortController();
-
-      getBooksByTitle(title, { signal: ac.signal });
-
-      return () => ac.abort('AbortFetchRequest - component unmounted');
+      getBooksByTitle(title);
+      return () => abortController.cleanUp();
     }, []);
 
-    const clearBooks = () => setBooks([]);
-
-    return { books, isLoading, error, clearBooks, getBooksByTitle };
+    return { 
+      books, 
+      isLoading: Boolean(title.trim()) && !Boolean(error) && books.length === 0, 
+      error,  
+      getBooksByTitle, 
+    };
 }
 
 export default useBooksApi;

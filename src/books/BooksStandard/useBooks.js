@@ -12,7 +12,7 @@ const useBooks = () => {
   const onChangeTitle = e => {
     const { value } = e.target;
     setTitle(value);
-    getBooksByTitle(value);
+    getBooksByTitle(value, { debounce: 400, abortParallel: true });
   };
 
   const isNoBooksError = error && error.status === 404 && error.code === BOOKS_NOT_FOUND_CODE;
