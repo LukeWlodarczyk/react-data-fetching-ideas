@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from "react";
+import { useState } from "react";
 import _debounce from 'lodash/debounce';
 
 import useBooksApi from './useBooksApi';

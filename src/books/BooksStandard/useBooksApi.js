@@ -20,7 +20,6 @@ function _debounce(f, defaultTime = 0) {
   };
 
   debounced.cancel = () => {
-    console.log('cancel', timer)
     clearTimeout(timer);
   }
 
@@ -48,14 +47,16 @@ const useBooksApi = (title) => {
     const getBooksByTitle = useCallback(async (title, { ac = new AbortController, debounce = 0, abortParallel = false } = {}) => {
       setInitialState();
 
-      if (title.trim().length === 0 || abortParallel) {
-        console.log('abort')
-        abortController.abortAll();
+      if (title.trim().length === 0) {
+        return abortController.abortAll();
       }
 
       if (title.trim().length === 0 && debounce) {
-        console.log('empty')
         return debouncedFetchBooksByTitle.cancel();
+      }
+
+      if (abortParallel) {
+        abortController.abortAll();
       }
 
       abortController.add(ac);
@@ -63,7 +64,6 @@ const useBooksApi = (title) => {
       const fetch = debounce ? debouncedFetchBooksByTitle.setTime(debounce) : fetchBooksByTitle;
 
       try {
-        console.log('start')
         const books = await fetch(title, { signal: ac.signal });
         setBooks(books);
       } catch (error) {
