@@ -1,15 +1,12 @@
 
-const getBooksApiByTitle = ({ title, limit }) => `https://openlibrary.org/search.json?title=${title}&limit=${2}`;
+const getBooksApiUrlByTitle = ({ title, limit }) => `https://openlibrary.org/search.json?title=${title}&limit=${limit}`;
 
-export const BOOKS_NOT_FOUND_CODE = 'BOOKS NOT FOUND';
+
 
 export const fetchBooksByTitle = async (title, { signal } = {}) => {
   const booksRes = await fetch(getBooksApiByTitle({ title, limit: 2 }), { method: 'GET', signal  });
   const booksData = await booksRes.json();
 
-  if (booksData.numFound === 0) {
-    throw { status: 404, code: BOOKS_NOT_FOUND_CODE };
-  }
 
   return booksData.docs;
 };
