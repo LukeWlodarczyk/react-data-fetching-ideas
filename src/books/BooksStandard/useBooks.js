@@ -12,7 +12,7 @@ const useBooks = () => {
   const onChangeTitle = e => {
     const { value } = e.target;
 
-    setTitle(value);
+    // # Fetching inside on change handler
     refetch(value, { debounce: 400, abortParallel: true });
   };
 
