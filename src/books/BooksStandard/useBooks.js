@@ -2,7 +2,6 @@ import { useState } from "react";
 import _debounce from 'lodash/debounce';
 
 import useBooksApi from './useBooksApi';
-import { BOOKS_NOT_FOUND_CODE } from "../../api/books";
 
 const useBooks = () => {
   const [title, setTitle] = useState('the lord of the rings');
@@ -12,7 +11,7 @@ const useBooks = () => {
   const onChangeTitle = e => {
     const { value } = e.target;
 
-
+    setTitle(value);
     refetch(value, { debounce: 400, abortParallel: true });
   };
 
