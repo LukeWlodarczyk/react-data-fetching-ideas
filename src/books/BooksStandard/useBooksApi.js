@@ -35,6 +35,7 @@ const debouncedFetchBooksByTitle = _debounce(fetchBooksByTitle);
 
 const useBooksApi = (title) => {
     const [books, setBooks] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
     const abortController = useAbortController();
@@ -42,17 +43,17 @@ const useBooksApi = (title) => {
     const setInitialState = () => {
       setError(null);
       setBooks([]);
+      setIsLoading(false);
     }
   
     const getBooksByTitle = useCallback(async (title, { ac = new AbortController, debounce = 0, abortParallel = false } = {}) => {
-      setInitialState();
+      setError(null)
+      setIsLoading(true)
 
       if (title.trim().length === 0) {
+        setInitialState()
+        debounce && debouncedFetchBooksByTitle.cancel();
         return abortController.abortAll();
-      }
-
-      if (title.trim().length === 0 && debounce) {
-        return debouncedFetchBooksByTitle.cancel();
       }
 
       if (abortParallel) {
@@ -69,6 +70,7 @@ const useBooksApi = (title) => {
       } catch (error) {
         if (!abortController.isAborted(ac)) setError(error);
       } finally {
+        if (!abortController.isAborted(ac)) setIsLoading(false);
         abortController.abort(ac)
       }
     }, [])
@@ -80,9 +82,9 @@ const useBooksApi = (title) => {
 
     return { 
       books, 
-      isLoading: Boolean(title.trim()) && !Boolean(error) && books.length === 0, 
+      isLoading,
       error,  
-      getBooksByTitle, 
+      refetch: getBooksByTitle, 
     };
 }
 
