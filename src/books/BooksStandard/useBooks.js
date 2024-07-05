@@ -13,6 +13,7 @@ const useBooks = () => {
     const { value } = e.target;
 
     setTitle(value);
+    // Refetch inside on change handler
     refetch(value, { debounce: 400, abortParallel: true });
   };
 
