@@ -7,24 +7,26 @@ import { BOOKS_NOT_FOUND_CODE } from "../../api/books";
 const useBooks = () => {
   const [title, setTitle] = useState('the lord of the rings');
 
-  const { books, isLoading, error, getBooksByTitle } = useBooksApi(title);
+  const { books, isLoading, error, refetch } = useBooksApi(title);
 
   const onChangeTitle = e => {
     const { value } = e.target;
+
     setTitle(value);
-    getBooksByTitle(value, { debounce: 400, abortParallel: true });
+    refetch(value, { debounce: 400, abortParallel: true });
   };
 
-  const isNoBooksError = error && error.status === 404 && error.code === BOOKS_NOT_FOUND_CODE;
-  const isApiError = !isNoBooksError && Boolean(error);
+  const isApiError = Boolean(error);
+  const hasTitle = Boolean(title.trim());
+  const hasBooks = Boolean(books.length);
 
   return { 
     books, 
-    showLoader: isLoading, 
-    showBooks: !isLoading && !isApiError && !isNoBooksError && Boolean(books.length),
-    showNoTitleInfo: !Boolean(title.trim()),
+    isLoading, 
+    showBooks: !isLoading && !isApiError && hasBooks,
+    showNoTitleInfo: !hasTitle,
     isApiError,
-    isNoBooksError,
+    isNoBooksError: !isLoading && !isApiError && !hasBooks && hasTitle,
     title, 
     onChangeTitle 
   };
