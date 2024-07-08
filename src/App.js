@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // import Loader from './ui/Loader/Loader'
 
 import Navigation from './ui/Navigation/'
+import AppHeading from './ui/AppHeading'
 
 // import BooksStandard from "./books/BooksStandard/BooksStandard";
 // import BooksUseSWR from "./books/BooksUseSWR";
@@ -70,8 +71,8 @@ const MAIN_ROUTES = [
 export default function App() {
   return (
     <Router>
-      <div className="App">
-        <h1>Data fetching ideas</h1>
+      <div>
+        <AppHeading>Data fetching ideas</AppHeading>
         <Navigation links={MAIN_ROUTES} />
         
         <Routes>

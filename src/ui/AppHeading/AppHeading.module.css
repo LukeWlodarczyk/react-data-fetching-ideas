@@ -1,0 +1,21 @@
+.link {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    color: #fff;
+    text-align: center;
+    background-color: #333;
+    text-decoration: none;
+    display: block;
+    font-size: 32px;
+}
+
+.link:hover {
+    color: #fff;
+    text-decoration: underline;
+    text-decoration-color: #F67280;
+}
+
+.link.active {
+    color: #fff;
+}
