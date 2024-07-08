@@ -6,7 +6,7 @@ const Navigation = ({ links }) => {
   return (
     <nav className={styles.nav}>
       <ul className={styles.list}>
-        {links.map(({ path, name }) => <li className={styles.item} key={path}><NavLink className={styles.link} to={path}>{name}</NavLink></li>)}
+        {links.map(({ path, name }) => <li className={styles.item} key={path}><NavLink className={({ isActive }) => isActive ? styles.active : styles.link} to={path}>{name}</NavLink></li>)}
       </ul>
     </nav>
   );

@@ -13,21 +13,19 @@
     justify-content: center;
 }
 
-
 .item {
     padding: 0 10px;
+    font-size: 14px;
 }
-
 
 .link {
     color: #45474B;
-    font-size: 14px;
+}
+
+.active {
+    color: #F67280;
 }
   
 .link:hover {
-    color: #F67280;
-}
-
-.link.active {
     color: #F67280;
 }
