@@ -2,6 +2,7 @@ import Loader from "../../Loader";
 import ErrorMessage from "../../ErrorMessage";
 
 import BooksList from '../../ui//BooksList';
+import SearchInput from "../../ui/SearchInput";
 
 import useBooks from "./useBooks";
 
@@ -10,7 +11,7 @@ const Books = () => {
 
   return (
     <div>
-      <input name='title' value={title} onChange={onChangeTitle} />
+      <SearchInput name='title' placeholder='book title...' value={title} onChange={onChangeTitle} />
       {showLoader &&  <Loader /> }
       {showBooks && <BooksList books={books} />}
       {isNoBooksError && <ErrorMessage message={`Books not found for provided title - ${title}`} />}
