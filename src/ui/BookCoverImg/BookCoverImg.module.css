@@ -1,0 +1,18 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px; 
+    position: relative;
+    background-color: #333;
+    min-width: 100px; 
+    height: 140px;
+    border: 1px solid #333;
+}
+
+.placeholder {
+    width: 80px;
+    height: '100px';
+    position: absolute;
+    transition: .6s;
+}

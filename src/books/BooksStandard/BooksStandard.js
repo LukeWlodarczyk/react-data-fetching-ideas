@@ -1,7 +1,7 @@
 import Loader from "../../Loader";
 import ErrorMessage from "../../ErrorMessage";
 
-import BooksList from './BooksList';
+import BooksList from '../../ui//BooksList';
 
 import useBooks from "./useBooks";
 
