@@ -10,7 +10,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // import Loader from './ui/Loader/Loader'
 
-import Navigation from './ui/Navigation/Navigation'
+import Navigation from './ui/Navigation/'
 
 // import BooksStandard from "./books/BooksStandard/BooksStandard";
 // import BooksUseSWR from "./books/BooksUseSWR";
@@ -26,10 +26,45 @@ const BooksStandard = lazy(() => import('./books/BooksStandard/BooksStandard'));
 
 const MAIN_ROUTES = [
   {
-    path: '/no-libs',
-    name: 'No library',
+    path: '/no-lib-1',
+    name: 'No library #1',
     element: <BooksStandard />
-  }
+  },
+  {
+    path: '/no-lib-2',
+    name: 'No library #2',
+    element: <BooksStandard />
+  },
+  {
+    path: '/swr',
+    name: 'SWR',
+    element: <BooksStandard />
+  },
+  {
+    path: '/tanstack-query',
+    name: 'TanStack Query',
+    element: <BooksStandard />
+  },
+  {
+    path: '/custom-suspense',
+    name: 'Custom Suspense',
+    element: <BooksStandard />
+  },
+  {
+    path: '/swr-suspense',
+    name: 'SWR Suspense',
+    element: <BooksStandard />
+  },
+  {
+    path: '/tanstack-query-suspense',
+    name: 'TanStack Query Suspense',
+    element: <BooksStandard />
+  },
+  {
+    path: '/reac-use',
+    name: 'React.use',
+    element: <BooksStandard />
+  },
 ]
 
 export default function App() {

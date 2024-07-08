@@ -1,0 +1,33 @@
+.nav {
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+    margin: 5px auto;
+    padding: 0 20px; 
+    padding-bottom: 8px;
+    border-bottom: 1px solid #333;
+}
+
+.list {
+    display: flex;
+    justify-content: center;
+}
+
+
+.item {
+    padding: 0 10px;
+}
+
+
+.link {
+    color: #45474B;
+    font-size: 14px;
+}
+  
+.link:hover {
+    color: #F67280;
+}
+
+.link.active {
+    color: #F67280;
+}
