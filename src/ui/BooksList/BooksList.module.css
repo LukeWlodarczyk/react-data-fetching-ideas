@@ -1,4 +1,11 @@
 .list {
     display: flex;
     flex-direction: column;
+    width: 100%;
+}
+
+.item {
+    margin: 8px 0;
+    display: flex;
+    justify-content: center
 }
