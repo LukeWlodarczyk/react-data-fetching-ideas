@@ -11,8 +11,13 @@
 }
 
 .placeholder {
-    width: 80px;
-    height: '100px';
     position: absolute;
     transition: .6s;
+}
+
+.cover {
+    width: 100px;
+    height: 140px;
+    transition: opacity .6s; 
+    border-radius: 8px;
 }
