@@ -9,7 +9,7 @@ const BookCard = ({ book }) => (
             <h4 className={styles.title}>{book.title} <span className={styles.year}>({book.first_publish_year})</span></h4>
             {book.author_name && <p className={styles.authors}>{book.author_name.join(', ')}</p>}
             {book.subject && <div className={styles.subjects}>
-                {book.subject.slice(0, 3).map(subject => <div className={styles.subject}>{subject}</div>)}
+                {book.subject.slice(0, 3).map(subject => <div key={subject} className={styles.subject}>{subject}</div>)}
             </div>}
         </div>
     </div>
