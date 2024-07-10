@@ -25,7 +25,15 @@ const BooksStandard = lazy(() => import('./books/BooksStandard/BooksStandard'));
 
 // const queryClient = new QueryClient();
 
-const MAIN_ROUTES = [
+const HOME_ROUTES = [
+  {
+    path: '/',
+    name: 'Home',
+    element: <BooksStandard />
+  },
+]
+
+const NAV_ROUTES = [
   {
     path: '/no-lib-1',
     name: 'No library #1',
@@ -66,17 +74,16 @@ const MAIN_ROUTES = [
     name: 'React.use',
     element: <BooksStandard />
   },
-]
+];
 
 export default function App() {
   return (
     <Router>
       <div>
         <AppHeading>Data fetching ideas</AppHeading>
-        <Navigation links={MAIN_ROUTES} />
-        
+        <Navigation links={NAV_ROUTES} />
         <Routes>
-          {MAIN_ROUTES.map(route => <Route key={route.path} path={route.path} element={route.element} />)}
+          {[...HOME_ROUTES, ...NAV_ROUTES].map(route => <Route key={route.path} path={route.path} element={route.element} />)}
 
           {/* <div style={{ minHeight: 90 }}>
             <h2>useSWR</h2>
