@@ -1,5 +1,19 @@
+.wrapper {
+    width: 100%;
+    margin: 16px 0;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+
+.inputWrapper {
+    width: 100%;
+    max-width: 450px;
+    position: relative;
+}
+
 .search {
-    margin: 16px;
     padding: 8px 16px;
     outline: none;
     font-size: 16px;
@@ -7,5 +21,65 @@
     border-radius: 4px;
     color: #45474B;
     width: 100%;
-    max-width: 450px;
 }
+
+.inputWrapper::after {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    right: 10px;
+    top: 4px;
+}
+
+.inputWrapper.empty::after {
+    content: url('./circle.svg');
+    animation: scaleUp .3s forwards;
+}
+
+.inputWrapper.loading::after {
+    content: url('./spiral.svg');
+    animation: rotate 1s linear infinite, fadeIn .5s;
+}
+
+.inputWrapper.success::after {
+    content: url('./success.svg');
+    animation: scaleUp .3s forwards;
+}
+
+.inputWrapper.emptyBooks::after {
+    content: url('./empty.svg');
+    animation: scaleUp .3s forwards;
+}
+
+.inputWrapper.error::after {
+    content: url('./burst.svg');
+    animation: scaleUp .3s forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes scaleUp {
+    from {
+        transform: scale(0.5);;
+    }
+    to {
+        transform: scale(1);;
+    }
+}
+
