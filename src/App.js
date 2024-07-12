@@ -79,9 +79,11 @@ const NAV_ROUTES = [
 export default function App() {
   return (
     <Router>
-      <div>
+      <header>
         <AppHeading>Data fetching ideas</AppHeading>
         <Navigation links={NAV_ROUTES} />
+      </header>
+      <main>
         <Routes>
           {[...HOME_ROUTES, ...NAV_ROUTES].map(route => <Route key={route.path} path={route.path} element={route.element} />)}
 
@@ -127,7 +129,7 @@ export default function App() {
             </Suspense>
           </div> */}
         </Routes>
-      </div>
+      </main>
     </Router>
   );
 }
