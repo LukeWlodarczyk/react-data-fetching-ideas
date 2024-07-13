@@ -78,58 +78,60 @@ const NAV_ROUTES = [
 
 export default function App() {
   return (
-    <Router>
-      <header>
-        <AppHeading>Data fetching ideas</AppHeading>
-        <Navigation links={NAV_ROUTES} />
-      </header>
-      <main>
-        <Routes>
-          {[...HOME_ROUTES, ...NAV_ROUTES].map(route => <Route key={route.path} path={route.path} element={route.element} />)}
+    <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+      <Router>
+        <header>
+          <AppHeading>Data fetching ideas</AppHeading>
+          <Navigation links={NAV_ROUTES} />
+        </header>
+        <main>
+          <Routes>
+            {[...HOME_ROUTES, ...NAV_ROUTES].map(route => <Route key={route.path} path={route.path} element={route.element} />)}
 
-          {/* <div style={{ minHeight: 90 }}>
-            <h2>useSWR</h2>
-            <BooksUseSWR />
-          </div> */}
-          
-          {/* <div style={{ minHeight: 90 }}>
-            <QueryClientProvider client={queryClient}>
-                <h2>useQuery</h2>
-                <BooksUseQuery />
-            </QueryClientProvider>
-          </div> */}
+            {/* <div style={{ minHeight: 90 }}>
+              <h2>useSWR</h2>
+              <BooksUseSWR />
+            </div> */}
+            
+            {/* <div style={{ minHeight: 90 }}>
+              <QueryClientProvider client={queryClient}>
+                  <h2>useQuery</h2>
+                  <BooksUseQuery />
+              </QueryClientProvider>
+            </div> */}
 
-          {/* <div style={{ minHeight: 90 }}>
-            <h2>CustomWrapPromise&Suspense</h2>
-            <Suspense fallback={<Loader/ >}>
-              <BooksWrapPromiseSuspense />
-            </Suspense>
-          </div> */}
+            {/* <div style={{ minHeight: 90 }}>
+              <h2>CustomWrapPromise&Suspense</h2>
+              <Suspense fallback={<Loader/ >}>
+                <BooksWrapPromiseSuspense />
+              </Suspense>
+            </div> */}
 
-          {/* <div style={{ minHeight: 90 }}>
-            <h2>useSWR&Suspense</h2>
-            <Suspense fallback={<Loader/ >}>
-              <BooksUseSWRSuspense />
-            </Suspense>
-          </div> */}
+            {/* <div style={{ minHeight: 90 }}>
+              <h2>useSWR&Suspense</h2>
+              <Suspense fallback={<Loader/ >}>
+                <BooksUseSWRSuspense />
+              </Suspense>
+            </div> */}
 
-          {/* <div style={{ minHeight: 90 }}>
-            <QueryClientProvider client={queryClient}>
-                <h2>useSuspenseQuery&Suspense</h2>
-                <Suspense fallback={<Loader/ >}>
-                  <BooksUseSuspenseQuery />
-                </Suspense>
-            </QueryClientProvider>
-          </div> */}
-          
-          {/* <div style={{ minHeight: 90 }}>
-            <h2>Use&Suspense</h2>
-            <Suspense fallback={<Loader/ >}>
-              <BooksSuspenseUse />
-            </Suspense>
-          </div> */}
-        </Routes>
-      </main>
-    </Router>
+            {/* <div style={{ minHeight: 90 }}>
+              <QueryClientProvider client={queryClient}>
+                  <h2>useSuspenseQuery&Suspense</h2>
+                  <Suspense fallback={<Loader/ >}>
+                    <BooksUseSuspenseQuery />
+                  </Suspense>
+              </QueryClientProvider>
+            </div> */}
+            
+            {/* <div style={{ minHeight: 90 }}>
+              <h2>Use&Suspense</h2>
+              <Suspense fallback={<Loader/ >}>
+                <BooksSuspenseUse />
+              </Suspense>
+            </div> */}
+          </Routes>
+        </main>
+      </Router>
+    </div>
   );
 }
