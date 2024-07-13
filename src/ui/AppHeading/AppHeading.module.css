@@ -19,3 +19,21 @@
 .link.active {
     color: #fff;
 }
+
+
+.gradinetSlide {
+    background: linear-gradient(#ffffff 50%, #F67280 70%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: auto 500%;
+    animation: gradinetSlide 1s ease-in-out forwards;
+}
+
+@keyframes gradinetSlide {
+    0% {
+        background-position: 50% 100%;
+    }
+    100% {
+        background-position: 50% 0%;
+    }
+}

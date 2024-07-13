@@ -6,7 +6,7 @@ const AppHeading = ({ children }) => {
   return (
     <h1 >
       <NavLink className={styles.link} to='/'>
-        {children}
+        <span className={styles.gradinetSlide}>{children}</span>
       </NavLink>
     </h1>
   );
