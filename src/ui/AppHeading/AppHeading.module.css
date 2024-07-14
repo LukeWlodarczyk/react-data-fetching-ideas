@@ -8,6 +8,8 @@
     text-decoration: none;
     display: block;
     font-size: 32px;
+    z-index: 1;
+    position: relative;
 }
 
 .link:hover {
@@ -19,7 +21,6 @@
 .link.active {
     color: #fff;
 }
-
 
 .gradinetSlide {
     background: linear-gradient(#ffffff 50%, #F67280 70%);
