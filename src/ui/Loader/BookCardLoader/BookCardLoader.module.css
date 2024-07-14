@@ -1,0 +1,100 @@
+.wrapper {
+    max-width: 450px;
+    width: 100%; 
+    border: 1px solid #45474B;
+    border-radius: 4px;
+    padding: 14px;
+    display: flex;
+    margin: 8px 0;
+    animation: loading-border .3s infinite alternate;
+}
+
+.placeholderWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px; 
+    position: relative;
+    background-color: #333;
+    min-width: 100px; 
+    height: 140px;
+    border: 1px solid #333;
+    animation: loading .3s infinite alternate;
+}
+
+.description {
+    width: 100%;
+    margin-left: 24px;
+}
+
+.heading {
+    margin-top: 4px;
+    display: flex;
+    width: 100%;
+}
+
+.title {
+    width: 80%;
+    height: 24px;
+    border-radius: 16px;
+    background-color: #333;
+    animation: loading .3s infinite alternate;
+}
+
+.year {
+    width: 15%;
+    height: 24px;
+    border-radius: 16px;
+    background-color: #333;
+    margin-left: 8px;
+    animation: loading .3s infinite alternate;
+}
+
+.authors {
+    margin-top: 10px;
+    width: 42%;
+    height: 20px;
+    background-color: #333;
+    border-radius: 16px;
+    animation: loading .3s infinite alternate;
+}
+
+.subjects {
+    display: flex wrap;
+    margin: 16px 0;
+}
+
+.subject {
+    width: 15%;
+    background-color: #333;
+    height: 14px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    border-radius: 8px;
+    display: inline-block;
+    animation: loading .3s infinite alternate;
+}
+
+.subject:nth-child(odd) {
+    width: 20%;
+}
+
+
+@keyframes loading {
+    from {
+        background-color: #333;
+    }
+    to {
+        background-color: #45474B;
+    }
+}
+
+@keyframes loading-border {
+    from {
+        border-color: #333;
+    }
+  
+    to {
+        border-color: #45474B;
+    }
+}

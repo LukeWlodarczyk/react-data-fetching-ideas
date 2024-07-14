@@ -1,4 +1,4 @@
-import Loader from "../../Loader";
+import { BooksListLoader } from "../../ui/Loader";
 import ErrorMessage from "../../ErrorMessage";
 
 import BooksList from '../../ui//BooksList';
@@ -12,7 +12,7 @@ const Books = () => {
   return (
     <div>
       <SearchInput name='title' placeholder='book title...' value={title} onChange={onChangeTitle} />
-      {showLoader &&  <Loader /> }
+      {showLoader &&  <BooksListLoader /> }
       {showBooks && <BooksList books={books} />}
       {isNoBooksError && <ErrorMessage message={`Books not found for provided title - ${title}`} />}
       {isApiError && <ErrorMessage />}
