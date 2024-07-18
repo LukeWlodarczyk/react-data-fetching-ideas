@@ -1,14 +1,37 @@
+import axios from 'axios';
 
 const getBooksApiUrlByTitle = ({ title, limit }) => `https://openlibrary.org/search.json?title=${title}&limit=${limit}`;
 
+const cacheMap = new Map();
 
+const cache = (fetcher, key) => {
+  const cached = cacheMap.get(key);
 
-export const fetchBooksByTitle = async (title, { signal } = {}) => {
-  const booksRes = await fetch(getBooksApiByTitle({ title, limit: 2 }), { method: 'GET', signal  });
-  const booksData = await booksRes.json();
+  if (cached && !cached.isRejected) {
+    return cached;
+  }
 
+  const promise = fetcher()
+    .then(data => {
+      promise.isResolved = true;
+      return data;
+    })
+    .catch(e => {
+      promise.isRejected = true;
+      throw e;
+    })
 
-  return booksData.docs;
+    cacheMap.set(key, promise);
+
+  return promise;
+}
+
+export const fetchBooksByTitle = async (title, { signal, cacheEnabled = false } = {}) => {
+  const fetcher = () => axios(getBooksApiUrlByTitle({ title, limit: 3 }), { method: 'GET', signal  });
+
+  const res = cacheEnabled ? await cache(fetcher, title) : await fetcher();
+
+  return res.data.docs;
 };
 
 
