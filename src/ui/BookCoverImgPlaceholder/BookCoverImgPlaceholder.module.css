@@ -1,4 +1,8 @@
 .placeholder {
-    width: 80px;
-    height: 100px;
+    width: 100%;
+    height: 100%;
+    background-image: url(./book.svg);
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: center;
 }
