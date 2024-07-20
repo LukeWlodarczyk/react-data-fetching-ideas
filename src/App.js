@@ -16,7 +16,7 @@ import AppHeading from './ui/AppHeading'
 // import BooksStandard from "./books/BooksStandard/BooksStandard";
 // import BooksUseSWR from "./books/BooksUseSWR";
 // import BooksUseQuery from "./books/BooksUseQuery";
-// import BooksWrapPromiseSuspense from "./books/BooksWrapPromiseSuspense";
+import BooksResourceSuspene from "./books/BooksResourceSuspene";
 // import BooksUseSWRSuspense from "./books/BooksUseSWRSuspense";
 // import BooksUseSuspenseQuery from "./books/BooksUseSuspenseQuery";
 // import BooksSuspenseUse from "./books/BooksSuspenseUse";
@@ -55,9 +55,9 @@ const NAV_ROUTES = [
     element: <BooksStandard />
   },
   {
-    path: '/custom-suspense',
-    name: 'Custom Suspense',
-    element: <BooksStandard />
+    path: '/resource-suspense',
+    name: 'Resource Suspense',
+    element: <BooksResourceSuspene />
   },
   {
     path: '/swr-suspense',
