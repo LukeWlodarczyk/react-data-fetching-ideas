@@ -10,9 +10,7 @@ const mFetchBooksByTitle = _memoize(fetchBooksByTitle);
 const BooksListSuspendable = ({ title }) => {
   let books = [];
 
-  if (title.trim()) {
-    books = use(mFetchBooksByTitle(title));
-  }
+  if (title.trim()) books = use(mFetchBooksByTitle(title));
 
   return <BooksList books={books} />;
 };

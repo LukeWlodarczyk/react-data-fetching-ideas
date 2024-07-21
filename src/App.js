@@ -19,7 +19,7 @@ import AppHeading from './ui/AppHeading'
 import BooksResourceSuspene from "./books/BooksResourceSuspene";
 // import BooksUseSWRSuspense from "./books/BooksUseSWRSuspense";
 // import BooksUseSuspenseQuery from "./books/BooksUseSuspenseQuery";
-// import BooksSuspenseUse from "./books/BooksSuspenseUse";
+import BooksUse from "./books/BooksUse";
 
 const BooksStandard = lazy(() => import('./books/BooksStandard/BooksStandard'));
 
@@ -72,7 +72,7 @@ const NAV_ROUTES = [
   {
     path: '/reac-use',
     name: 'React.use',
-    element: <BooksStandard />
+    element: <BooksUse />
   },
 ];
 
