@@ -12,6 +12,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Navigation from './ui/Navigation/'
 import AppHeading from './ui/AppHeading'
+import Home from './Home'
 
 // import BooksStandard from "./books/BooksStandard/BooksStandard";
 import BooksUseSWR from "./books/BooksUseSWR";
@@ -29,7 +30,7 @@ const HOME_ROUTES = [
   {
     path: '/',
     name: 'Home',
-    element: <BooksStandard />
+    element: <Home />
   },
 ]
 
@@ -87,48 +88,6 @@ export default function App() {
         <main>
           <Routes>
             {[...HOME_ROUTES, ...NAV_ROUTES].map(route => <Route key={route.path} path={route.path} element={route.element} />)}
-
-            {/* <div style={{ minHeight: 90 }}>
-              <h2>useSWR</h2>
-              <BooksUseSWR />
-            </div> */}
-            
-            {/* <div style={{ minHeight: 90 }}>
-              <QueryClientProvider client={queryClient}>
-                  <h2>useQuery</h2>
-                  <BooksUseQuery />
-              </QueryClientProvider>
-            </div> */}
-
-            {/* <div style={{ minHeight: 90 }}>
-              <h2>CustomWrapPromise&Suspense</h2>
-              <Suspense fallback={<Loader/ >}>
-                <BooksWrapPromiseSuspense />
-              </Suspense>
-            </div> */}
-
-            {/* <div style={{ minHeight: 90 }}>
-              <h2>useSWR&Suspense</h2>
-              <Suspense fallback={<Loader/ >}>
-                <BooksUseSWRSuspense />
-              </Suspense>
-            </div> */}
-
-            {/* <div style={{ minHeight: 90 }}>
-              <QueryClientProvider client={queryClient}>
-                  <h2>useSuspenseQuery&Suspense</h2>
-                  <Suspense fallback={<Loader/ >}>
-                    <BooksUseSuspenseQuery />
-                  </Suspense>
-              </QueryClientProvider>
-            </div> */}
-            
-            {/* <div style={{ minHeight: 90 }}>
-              <h2>Use&Suspense</h2>
-              <Suspense fallback={<Loader/ >}>
-                <BooksSuspenseUse />
-              </Suspense>
-            </div> */}
           </Routes>
         </main>
       </Router>
