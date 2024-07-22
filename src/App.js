@@ -14,7 +14,7 @@ import Navigation from './ui/Navigation/'
 import AppHeading from './ui/AppHeading'
 
 // import BooksStandard from "./books/BooksStandard/BooksStandard";
-// import BooksUseSWR from "./books/BooksUseSWR";
+import BooksUseSWR from "./books/BooksUseSWR";
 // import BooksUseQuery from "./books/BooksUseQuery";
 import BooksResourceSuspene from "./books/BooksResourceSuspene";
 // import BooksUseSWRSuspense from "./books/BooksUseSWRSuspense";
@@ -47,7 +47,7 @@ const NAV_ROUTES = [
   {
     path: '/swr',
     name: 'SWR',
-    element: <BooksStandard />
+    element: <BooksUseSWR />
   },
   {
     path: '/tanstack-query',
