@@ -15,7 +15,7 @@ import AppHeading from './ui/AppHeading'
 
 // import BooksStandard from "./books/BooksStandard/BooksStandard";
 import BooksUseSWR from "./books/BooksUseSWR";
-// import BooksUseQuery from "./books/BooksUseQuery";
+import BooksUseQuery from "./books/BooksUseQuery";
 import BooksResourceSuspene from "./books/BooksResourceSuspene";
 // import BooksUseSWRSuspense from "./books/BooksUseSWRSuspense";
 // import BooksUseSuspenseQuery from "./books/BooksUseSuspenseQuery";
@@ -52,7 +52,7 @@ const NAV_ROUTES = [
   {
     path: '/tanstack-query',
     name: 'TanStack Query',
-    element: <BooksStandard />
+    element: <BooksUseQuery />
   },
   {
     path: '/resource-suspense',
