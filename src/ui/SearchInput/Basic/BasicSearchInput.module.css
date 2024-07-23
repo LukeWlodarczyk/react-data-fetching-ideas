@@ -1,0 +1,11 @@
+.search {
+    max-width: 450px;
+    margin-top: 15px;
+    padding: 8px 16px;
+    outline: none;
+    font-size: 16px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    color: #45474B;
+    width: 100%;
+}
