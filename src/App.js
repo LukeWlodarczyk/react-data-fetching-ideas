@@ -3,28 +3,19 @@ import "./styles.css";
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-// import {
-//   QueryClient,
-//   QueryClientProvider,
-// } from '@tanstack/react-query';
-
-// import Loader from './ui/Loader/Loader'
-
 import Navigation from './ui/Navigation/'
 import AppHeading from './ui/AppHeading'
+
 import Home from './Home'
 
-// import BooksStandard from "./books/BooksStandard/BooksStandard";
 import BooksUseSWR from "./books/BooksUseSWR";
 import BooksUseQuery from "./books/BooksUseQuery";
 import BooksResourceSuspene from "./books/BooksResourceSuspene";
 import BooksUseSuspenseSWR from "./books/BooksUseSuspenseSWR";
-// import BooksUseSuspenseQuery from "./books/BooksUseSuspenseQuery";
+import BooksUseSuspenseQuery from "./books/BooksUseSuspenseQuery";
 import BooksUse from "./books/BooksUse";
 
 const BooksStandard = lazy(() => import('./books/BooksStandard/BooksStandard'));
-
-// const queryClient = new QueryClient();
 
 const HOME_ROUTES = [
   {
@@ -68,7 +59,7 @@ const NAV_ROUTES = [
   {
     path: '/tanstack-query-suspense',
     name: 'TanStack Query Suspense',
-    element: <BooksStandard />
+    element: <BooksUseSuspenseQuery />
   },
   {
     path: '/reac-use',
