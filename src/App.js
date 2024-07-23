@@ -1,4 +1,4 @@
-import {  lazy, Suspense } from "react";
+import {  lazy } from "react";
 import "./styles.css";
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -18,7 +18,7 @@ import Home from './Home'
 import BooksUseSWR from "./books/BooksUseSWR";
 import BooksUseQuery from "./books/BooksUseQuery";
 import BooksResourceSuspene from "./books/BooksResourceSuspene";
-// import BooksUseSWRSuspense from "./books/BooksUseSWRSuspense";
+import BooksUseSuspenseSWR from "./books/BooksUseSuspenseSWR";
 // import BooksUseSuspenseQuery from "./books/BooksUseSuspenseQuery";
 import BooksUse from "./books/BooksUse";
 
@@ -63,7 +63,7 @@ const NAV_ROUTES = [
   {
     path: '/swr-suspense',
     name: 'SWR Suspense',
-    element: <BooksStandard />
+    element: <BooksUseSuspenseSWR />
   },
   {
     path: '/tanstack-query-suspense',
