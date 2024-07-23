@@ -1,8 +1,9 @@
 import { Suspense } from "react";
 
-import BooksListSuspendable from './BooksListSuspendable';
-
+import { BasicInput } from "../../ui/SearchInput";
 import { BooksListLoader } from '../../ui/Loader';
+
+import BooksListSuspendable from './BooksListSuspendable';
 
 import useTitle from './useTitle';
 
@@ -11,7 +12,7 @@ const Books = () => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '60px' }}>
-      <input value={title} onChange={onChange} />
+      <BasicInput value={title} onChange={onChange} />
       <Suspense fallback={<BooksListLoader /> }>
         <BooksListSuspendable title={paramTitle} />
       </Suspense>
