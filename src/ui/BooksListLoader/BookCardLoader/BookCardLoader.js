@@ -5,7 +5,7 @@ import BookCoverImgPlaceholder from '../../BookCoverImgPlaceholder';
 const BookCardLoader = () => (
     <div className={styles.wrapper}>
         <div className={styles.placeholderWrapper}>
-            <BookCoverImgPlaceholder />
+            <BookCoverImgPlaceholder isLoading />
         </div>
         <div className={styles.description}>
             <div className={styles.heading}>

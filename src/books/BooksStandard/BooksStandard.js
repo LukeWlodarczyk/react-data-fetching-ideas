@@ -1,5 +1,4 @@
-import { BooksListLoader } from "../../ui/Loader";
-import ErrorMessage from "../../ErrorMessage";
+import BooksListLoader from "../../ui/BooksListLoader";
 
 import BooksList from '../../ui//BooksList';
 import SearchInput from "../../ui/SearchInput";

@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 
-import { BooksListLoader } from '../../ui/Loader';
+import BooksListLoader from "../../ui/BooksListLoader";
 import { BasicInput } from "../../ui/SearchInput";
 
 import BooksListSuspendable from './BooksListSuspendable';
