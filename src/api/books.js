@@ -1,13 +1,18 @@
 import axios from 'axios';
 
-import cache from './cache';
+import { BASE_URL } from './constants';
 
-const getBooksApiUrlByTitle = ({ title, limit }) => `https://openlibrary.org/search.json?title=${title}&limit=${limit}`;
+import memoize from './memoize';
+
+const getBooksByTitleApiUrl = ({ title, limit }) => `${BASE_URL}/search.json?title=${title}&limit=${limit}`;
+
+const request = ({ title }, { signal }) => axios(getBooksByTitleApiUrl({ title, limit: 3 }), { signal });
+const mRequest = memoize(request, ({ title }) => title);
 
 export const fetchBooksByTitle = async (title, { signal, cacheEnabled = false } = {}) => {
-  const fetcher = () => axios(getBooksApiUrlByTitle({ title, limit: 3 }), { method: 'GET', signal  });
+  const fetcher = cacheEnabled ? mRequest : request;
 
-  const res = cacheEnabled ? await cache(fetcher, title) : await fetcher();
+  const res = await fetcher({ title }, { signal });
 
   return res.data.docs;
 };
