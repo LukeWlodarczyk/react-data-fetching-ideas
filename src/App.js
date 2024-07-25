@@ -1,21 +1,21 @@
-import {  lazy } from "react";
+import { lazy } from "react";
 import "./styles.css";
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import Navigation from './ui/Navigation/'
-import AppHeading from './ui/AppHeading'
+import Navigation from './ui/Navigation';
+import AppHeading from './ui/AppHeading';
 
-import Home from './Home'
-
-import BooksUseSWR from "./books/BooksUseSWR";
-import BooksUseQuery from "./books/BooksUseQuery";
-import BooksResourceSuspene from "./books/BooksResourceSuspene";
-import BooksUseSuspenseSWR from "./books/BooksUseSuspenseSWR";
-import BooksUseSuspenseQuery from "./books/BooksUseSuspenseQuery";
-import BooksUse from "./books/BooksUse";
+import Home from './Home';
 
 const BooksStandard = lazy(() => import('./books/BooksStandard/BooksStandard'));
+const BooksStandard2 = lazy(() => import('./books/BooksStandard2/BooksStandard'));
+const BooksUseSWR = lazy(() => import('./books/BooksUseSWR'));
+const BooksUseQuery = lazy(() => import('./books/BooksUseQuery'));
+const BooksResourceSuspene = lazy(() => import('./books/BooksResourceSuspene'));
+const BooksUseSuspenseSWR = lazy(() => import('./books/BooksUseSuspenseSWR'));
+const BooksUseSuspenseQuery = lazy(() => import('./books/BooksUseSuspenseQuery'));
+const BooksUse = lazy(() => import('./books/BooksUse'));
 
 const HOME_ROUTES = [
   {
@@ -23,18 +23,18 @@ const HOME_ROUTES = [
     name: 'Home',
     element: <Home />
   },
-]
+];
 
 const NAV_ROUTES = [
   {
     path: '/no-lib-1',
-    name: 'No library #1',
+    name: 'No libs #1',
     element: <BooksStandard />
   },
   {
     path: '/no-lib-2',
-    name: 'No library #2',
-    element: <BooksStandard />
+    name: 'No libs #2',
+    element: <BooksStandard2 />
   },
   {
     path: '/swr',
@@ -73,7 +73,7 @@ export default function App() {
     <div style={{ maxWidth: '800px', margin: '0 auto' }}>
       <Router>
         <header>
-          <AppHeading>Data fetching ideas</AppHeading>
+          <AppHeading>React data fetching ideas</AppHeading>
           <Navigation links={NAV_ROUTES} />
         </header>
         <main>
