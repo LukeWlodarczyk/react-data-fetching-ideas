@@ -7,6 +7,7 @@ import Navigation from './ui/Navigation';
 import AppHeading from './ui/AppHeading';
 
 import Home from './Home';
+import NotFound from './NotFound';
 
 const BooksStandard = lazy(() => import('./books/BooksStandard/BooksStandard'));
 const BooksStandard2 = lazy(() => import('./books/BooksStandard2/BooksStandard'));
@@ -17,15 +18,20 @@ const BooksUseSuspenseSWR = lazy(() => import('./books/BooksUseSuspenseSWR'));
 const BooksUseSuspenseQuery = lazy(() => import('./books/BooksUseSuspenseQuery'));
 const BooksUse = lazy(() => import('./books/BooksUse'));
 
-const HOME_ROUTES = [
+const BASIC_ROUTES = [
   {
     path: '/',
     name: 'Home',
     element: <Home />
   },
+  {
+    path: '*',
+    name: 'Not Found',
+    element: <NotFound />
+  },
 ];
 
-const NAV_ROUTES = [
+const BOOKS_ROUTES = [
   {
     path: '/no-lib-1',
     name: 'No libs #1',
@@ -74,11 +80,11 @@ export default function App() {
       <Router>
         <header>
           <AppHeading>React data fetching ideas</AppHeading>
-          <Navigation links={NAV_ROUTES} />
+          <Navigation links={BOOKS_ROUTES} />
         </header>
         <main>
           <Routes>
-            {[...HOME_ROUTES, ...NAV_ROUTES].map(route => <Route key={route.path} path={route.path} element={route.element} />)}
+            {[...BASIC_ROUTES, ...BOOKS_ROUTES].map(route => <Route key={route.path} path={route.path} element={route.element} />)}
           </Routes>
         </main>
       </Router>
