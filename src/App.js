@@ -4,12 +4,13 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import ALL_ROUTES, { BOOKS_ROUTES } from './routes';
 
+import AppContainer from "./ui/AppContainer";
 import Navigation from './ui/Navigation';
 import AppHeading from './ui/AppHeading';
 
 export default function App() {
   return (
-    <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+    <AppContainer>
       <Router>
         <header>
           <AppHeading>React data fetching ideas</AppHeading>
@@ -21,6 +22,6 @@ export default function App() {
           </Routes>
         </main>
       </Router>
-    </div>
+    </AppContainer>
   );
 }
