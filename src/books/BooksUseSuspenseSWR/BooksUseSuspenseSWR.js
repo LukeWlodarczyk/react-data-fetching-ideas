@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 
+import Page from "../../ui/Page";
 import BooksListLoader from "../../ui/BooksListLoader";
 import { BasicInput } from "../../ui/SearchInput";
 
@@ -13,7 +14,7 @@ const Books = () => {
   const hasTitle = Boolean(paramTitle.trim());
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '60px' }}>
+    <Page>
       <BasicInput value={title} onChange={onChange} />
       {!hasTitle && <p>Type in book title</p>}
       {hasTitle && (
@@ -21,7 +22,7 @@ const Books = () => {
           <BooksListSuspendable title={paramTitle} />
         </Suspense>
       )}
-    </div>
+    </Page>
   );
 };
 

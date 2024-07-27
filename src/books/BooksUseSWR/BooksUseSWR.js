@@ -1,3 +1,4 @@
+import Page from "../../ui/Page";
 import BooksListLoader from "../../ui/BooksListLoader";
 import ErrorMessage from '../../ui/ErrorMessage/ErrorMessage';
 import BooksList from '../../ui/BooksList';
@@ -18,7 +19,7 @@ const Books = () => {
   } = useBooks();
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <Page>
       <SearchInput 
         autoFocus
         name='title' 
@@ -36,7 +37,7 @@ const Books = () => {
       {isNoBooksError && <ErrorMessage message={`Books not found for provided title - ${title}`} />}
       {isApiError && <ErrorMessage />}
       {isEmptyTitle && <p>Type in book title</p>}
-  </div>
+  </Page>
   );
 };
 

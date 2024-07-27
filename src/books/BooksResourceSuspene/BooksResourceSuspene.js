@@ -1,5 +1,6 @@
 import React, { Suspense } from "react";
 
+import Page from "../../ui/Page";
 import BooksListLoader from "../../ui/BooksListLoader";
 import { BasicInput } from "../../ui/SearchInput";
 
@@ -13,12 +14,12 @@ const Books = () => {
   const { title, onChange } = useTitle({ debounce: DEBOUNCE });
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '60px' }}>
+    <Page>
       <BasicInput value={title} onChange={onChange} />
       <Suspense fallback={<BooksListLoader /> }>
         <BooksListSuspendable title={title} debounce={DEBOUNCE} />
       </Suspense>
-    </div>
+    </Page>
   );
 };
 
