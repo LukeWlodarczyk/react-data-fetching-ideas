@@ -5,12 +5,12 @@ import { BasicInput } from "../../ui/SearchInput";
 
 import BooksListSuspendable from './BooksListSuspendable';
 
-import useTitle from './useTitle';
+import useTitle from '../../hooks/useTitle';
 
 const DEBOUNCE = 300;
 
 const Books = () => {
-  const { title, onChange } = useTitle({ paramsDebounce: DEBOUNCE });
+  const { title, onChange } = useTitle({ debounce: DEBOUNCE });
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '60px' }}>

@@ -1,5 +1,6 @@
-import { useState } from 'react';
 import useSWR from 'swr'
+
+import useTitle from '../../hooks/useTitle';
 
 import { fetchBooksByTitle } from "../../api/books";
 
@@ -10,16 +11,14 @@ const swrConfig = {
 };
 
 const useBooks = () => {
-    const [title, setTitle] = useState('');
-    const { data: books, isLoading, error } = useSWR(title, fetchBooksByTitle, swrConfig);
+    const { title, onChange, paramTitle } = useTitle();
+    const { data: books, isLoading, error } = useSWR(paramTitle, fetchBooksByTitle, swrConfig);
   
     const isFetched = Boolean(books);
     const hasBooks = Boolean(isFetched && books.length);
     const isNoBooksError = Boolean(isFetched && !books.length);
     const isApiError = Boolean(error);
     const hasTitle = Boolean(title.trim());
-
-    const onChangeTitle = e => setTitle(e.target.value);
 
     return { 
         books, 
@@ -29,7 +28,7 @@ const useBooks = () => {
         isApiError, 
         isNoBooksError, 
         title, 
-        onChangeTitle,
+        onChangeTitle: onChange,
     }
 };
 

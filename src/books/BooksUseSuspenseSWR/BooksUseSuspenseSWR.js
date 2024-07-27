@@ -5,7 +5,7 @@ import { BasicInput } from "../../ui/SearchInput";
 
 import BooksListSuspendable from './BooksListSuspendable';
 
-import useTitle from './useTitle';
+import useTitle from '../../hooks/useTitle';
 
 const Books = () => {
   const { title, paramTitle, onChange } = useTitle();
