@@ -8,16 +8,16 @@ const cache = (fetcher, key) => {
   }
 
   const promise = fetcher()
-    .then(data => {
+    .then((data) => {
       promise.isResolved = true;
       return data;
     })
-    .catch(e => {
+    .catch((e) => {
       promise.isRejected = true;
       throw e;
-    })
+    });
 
-    cacheMap.set(key, promise);
+  cacheMap.set(key, promise);
 
   return promise;
 };

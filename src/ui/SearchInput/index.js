@@ -1,2 +1,2 @@
-export { default } from "./SearchInput";
-export { default as BasicInput } from "./Basic";
+export { default } from './SearchInput';
+export { default as BasicInput } from './Basic';

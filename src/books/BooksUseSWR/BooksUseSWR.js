@@ -1,30 +1,30 @@
-import Page from "@/ui/Page";
-import BooksListStates from "@/ui/BooksListStates";
-import SearchInput from "@/ui/SearchInput";
+import Page from '@/ui/Page';
+import BooksListStates from '@/ui/BooksListStates';
+import SearchInput from '@/ui/SearchInput';
 
-import useBooks from "./useBooks";
+import useBooks from './useBooks';
 
 const Books = () => {
   const {
-    books, 
-    isLoading, 
+    books,
+    isLoading,
     isSuccess,
     isEmptyTitle,
-    isApiError, 
-    isNoBooksError, 
-    title, 
+    isApiError,
+    isNoBooksError,
+    title,
     onChangeTitle,
   } = useBooks();
 
   return (
     <Page>
-      <SearchInput 
+      <SearchInput
         autoFocus
-        name='title' 
-        placeholder='book title...' 
-        value={title} 
-        onChange={onChangeTitle} 
-        isLoading={isLoading} 
+        name="title"
+        placeholder="book title..."
+        value={title}
+        onChange={onChangeTitle}
+        isLoading={isLoading}
         isSuccess={isSuccess}
         isEmpty={isEmptyTitle}
         isEmptyBooks={isNoBooksError}
@@ -35,7 +35,7 @@ const Books = () => {
       {isNoBooksError && <BooksListStates.Empty />}
       {isApiError && <BooksListStates.Error />}
       {isEmptyTitle && <BooksListStates.EmptyTitle />}
-  </Page>
+    </Page>
   );
 };
 

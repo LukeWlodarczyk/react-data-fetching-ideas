@@ -1,11 +1,11 @@
 .emptyTitleCoverImg {
-    background-image: url(./svg/superhero-standing.svg);
+  background-image: url(./svg/superhero-standing.svg);
 }
 
 .errorCoverImg {
-    background-image: url(./svg/lying-down.svg);
+  background-image: url(./svg/lying-down.svg);
 }
 
 .emptyCoverImg {
-    background-image: url(./svg/mummy.svg);
+  background-image: url(./svg/mummy.svg);
 }

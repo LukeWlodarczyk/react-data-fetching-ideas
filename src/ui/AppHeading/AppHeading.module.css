@@ -1,40 +1,41 @@
 .link {
-    width: 100%;
-    margin: 0 auto;
-    padding: 20px;
-    color: #fff;
-    text-align: center;
-    background-color: #333;
-    text-decoration: none;
-    display: block;
-    font-size: 32px;
-    z-index: 1;
-    position: relative;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  color: #fff;
+  text-align: center;
+  background-color: #333;
+  text-decoration: none;
+  text-transform: capitalize;
+  display: block;
+  font-size: 32px;
+  z-index: 1;
+  position: relative;
 }
 
 .link:hover {
-    color: #fff;
-    text-decoration: underline;
-    text-decoration-color: #F67280;
+  color: #fff;
+  text-decoration: underline;
+  text-decoration-color: #f67280;
 }
 
 .link.active {
-    color: #fff;
+  color: #fff;
 }
 
 .gradinetSlide {
-    background: linear-gradient(#ffffff 50%, #F67280 70%);
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: auto 500%;
-    animation: gradinetSlide 1s ease-in-out forwards;
+  background: linear-gradient(#ffffff 50%, #f67280 70%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: auto 500%;
+  animation: gradinetSlide 1s ease-in-out forwards;
 }
 
 @keyframes gradinetSlide {
-    0% {
-        background-position: 50% 100%;
-    }
-    100% {
-        background-position: 50% 0%;
-    }
+  0% {
+    background-position: 50% 100%;
+  }
+  100% {
+    background-position: 50% 0%;
+  }
 }

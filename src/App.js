@@ -1,4 +1,4 @@
-import "./styles.css";
+import './styles.css';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
@@ -18,7 +18,13 @@ export default function App() {
         </header>
         <main>
           <Routes>
-            {ALL_ROUTES.map(route => <Route key={route.path} path={route.path} element={route.element} />)}
+            {ALL_ROUTES.map((route) => (
+              <Route
+                key={route.path}
+                path={route.path}
+                element={route.element}
+              />
+            ))}
           </Routes>
         </main>
       </Router>

@@ -3,66 +3,66 @@ import _memoize from 'lodash/memoize';
 import { fetchBooksByTitle } from '@/api/books';
 
 function _debounce(f, defaultTime = 0) {
-    let timer = null;
-    let time = defaultTime
-  
-    const debounced = (...args) => {
-      if (time === 0) return f(...args);
-      
-      return new Promise((resolve) => {
-        clearTimeout(timer);
-        timer = setTimeout(
-          () => resolve(f(...args)),
-          time,
-        );
-      });
-    };
-  
-    debounced.cancel = () => {
+  let timer = null;
+  let time = defaultTime;
+
+  const debounced = (...args) => {
+    if (time === 0) return f(...args);
+
+    return new Promise((resolve) => {
       clearTimeout(timer);
-    }
-  
-    debounced.setTime = (msec) => {
-      time = msec;
-      return debounced;
-    }
-  
+      timer = setTimeout(() => resolve(f(...args)), time);
+    });
+  };
+
+  debounced.cancel = () => {
+    clearTimeout(timer);
+  };
+
+  debounced.setTime = (msec) => {
+    time = msec;
     return debounced;
-  }
+  };
+
+  return debounced;
+}
 
 export const fetchBooksData = () => createBookResource(fetchBooksByTitle);
 
-const createBookResource = fetcher => {
+const createBookResource = (fetcher) => {
   let prevTitle = '';
-  let status = "pending";
+  let status = 'pending';
   let response;
   let suspender;
 
-  const initFetch = (arg, { cacheEnabled }) => fetcher(arg, { cacheEnabled }).then(
-    (res) => {
-      status = "success";
-      response = res;
-    },
-    (err) => {
-      status = "error";
-      response = err;
-    }
-  );
+  const initFetch = (arg, { cacheEnabled }) =>
+    fetcher(arg, { cacheEnabled }).then(
+      (res) => {
+        status = 'success';
+        response = res;
+      },
+      (err) => {
+        status = 'error';
+        response = err;
+      }
+    );
 
   const dInitFetch = _debounce(initFetch);
 
   const read = (title, { debounce = 0, cacheEnabled = false } = {}) => {
     if (!suspender || prevTitle !== title) {
       prevTitle = title;
-      status = "pending";
-      const createSuspender = debounce ? dInitFetch.setTime(debounce) : initFetch;
+      status = 'pending';
+      const createSuspender = debounce
+        ? dInitFetch.setTime(debounce)
+        : initFetch;
       suspender = createSuspender(title, { cacheEnabled });
     }
 
     switch (status) {
-      case "pending":
+      case 'pending':
         throw suspender;
-      case "error":
+      case 'error':
         throw response;
       default:
         return response;
@@ -70,4 +70,4 @@ const createBookResource = fetcher => {
   };
 
   return { read };
-}
+};

@@ -1,6 +1,6 @@
-import BooksListStates from "@/ui/BooksListStates";
+import BooksListStates from '@/ui/BooksListStates';
 
-import { fetchBooksData } from "./resource";
+import { fetchBooksData } from './resource';
 
 const booksResource = fetchBooksData();
 
@@ -9,11 +9,11 @@ const BooksListSuspendable = ({ title, debounce }) => {
 
   const hasBooks = books.length > 0;
 
-  return (
-    hasBooks 
-      ? <BooksListStates.Success books={books} />  
-      : <BooksListStates.Empty />
-    )
+  return hasBooks ? (
+    <BooksListStates.Success books={books} />
+  ) : (
+    <BooksListStates.Empty />
+  );
 };
 
 export default BooksListSuspendable;

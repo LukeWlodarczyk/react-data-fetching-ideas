@@ -1,33 +1,43 @@
-import { lazy } from "react";
+import { lazy } from 'react';
 
 import Home from './Home';
 import NotFound from './NotFound';
 
-const lazyWithPreload = cb => {
-    const Component = lazy(cb);
-    Component.preload = cb;
-    return Component;
+const lazyWithPreload = (cb) => {
+  const Component = lazy(cb);
+  Component.preload = cb;
+  return Component;
 };
 
-const BooksStandard = lazyWithPreload(() => import('./books/BooksStandard/BooksStandard'));
-const BooksStandard2 = lazyWithPreload(() => import('./books/BooksStandard2/BooksStandard'));
+const BooksStandard = lazyWithPreload(
+  () => import('./books/BooksStandard/BooksStandard')
+);
+const BooksStandard2 = lazyWithPreload(
+  () => import('./books/BooksStandard2/BooksStandard')
+);
 const BooksUseSWR = lazyWithPreload(() => import('./books/BooksUseSWR'));
 const BooksUseQuery = lazyWithPreload(() => import('./books/BooksUseQuery'));
-const BooksResourceSuspene = lazyWithPreload(() => import('./books/BooksResourceSuspene'));
-const BooksUseSuspenseSWR = lazyWithPreload(() => import('./books/BooksUseSuspenseSWR'));
-const BooksUseSuspenseQuery = lazyWithPreload(() => import('./books/BooksUseSuspenseQuery'));
+const BooksResourceSuspene = lazyWithPreload(
+  () => import('./books/BooksResourceSuspene')
+);
+const BooksUseSuspenseSWR = lazyWithPreload(
+  () => import('./books/BooksUseSuspenseSWR')
+);
+const BooksUseSuspenseQuery = lazyWithPreload(
+  () => import('./books/BooksUseSuspenseQuery')
+);
 const BooksUse = lazyWithPreload(() => import('./books/BooksUse'));
 
 export const BASIC_ROUTES = [
   {
     path: '/',
     name: 'Home',
-    element: <Home />
+    element: <Home />,
   },
   {
     path: '*',
     name: 'Not Found',
-    element: <NotFound />
+    element: <NotFound />,
   },
 ];
 

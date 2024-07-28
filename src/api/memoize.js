@@ -8,16 +8,15 @@ const memoize = (fetcher, resolver) => {
 
     if (cached) return cached;
 
-    const promise = fetcher(...args)
-      .catch(e => {
-        cacheMap.delete(key);
-        throw e;
-      });
+    const promise = fetcher(...args).catch((e) => {
+      cacheMap.delete(key);
+      throw e;
+    });
 
-      cacheMap.set(key, promise);
-  
+    cacheMap.set(key, promise);
+
     return promise;
-  }
+  };
 };
 
 export default memoize;

@@ -1,6 +1,6 @@
-.wrapper { 
-    display: flex; 
-    flex-direction: column;
-    align-items: center;
-    margin-top: 70px;
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 70px;
 }

@@ -1,10 +1,10 @@
-import { Suspense } from "react";
+import { Suspense } from 'react';
 import { useSWRConfig } from 'swr';
-import { ErrorBoundary } from "react-error-boundary";
+import { ErrorBoundary } from 'react-error-boundary';
 
-import Page from "@/ui/Page";
-import BooksListStates from "@/ui/BooksListStates";
-import { BasicInput } from "@/ui/SearchInput";
+import Page from '@/ui/Page';
+import BooksListStates from '@/ui/BooksListStates';
+import { BasicInput } from '@/ui/SearchInput';
 
 import BooksListSuspendable from './BooksListSuspendable';
 
@@ -15,15 +15,19 @@ const Books = () => {
   const hasTitle = Boolean(paramTitle.trim());
 
   const { mutate } = useSWRConfig();
-  const handleOnReset = () => mutate(paramTitle, undefined, { revalidate: false });
+  const handleOnReset = () =>
+    mutate(paramTitle, undefined, { revalidate: false });
 
   return (
     <Page>
       <BasicInput value={title} onChange={onChange} />
       {!hasTitle && <BooksListStates.EmptyTitle />}
       {hasTitle && (
-        <ErrorBoundary FallbackComponent={BooksListStates.Error} onReset={handleOnReset}>
-          <Suspense fallback={<BooksListStates.Loading /> }>
+        <ErrorBoundary
+          FallbackComponent={BooksListStates.Error}
+          onReset={handleOnReset}
+        >
+          <Suspense fallback={<BooksListStates.Loading />}>
             <BooksListSuspendable title={paramTitle} />
           </Suspense>
         </ErrorBoundary>
