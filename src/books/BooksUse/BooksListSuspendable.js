@@ -1,16 +1,14 @@
 import { use } from "react";
-import _memoize from 'lodash/memoize';
+import memoize from '../../api/memoize';
 
 import BooksListStates from "../../ui/BooksListStates";
 
 import { fetchBooksByTitle } from "../../api/books";
 
-const mFetchBooksByTitle = _memoize(fetchBooksByTitle);
+const mFetchBooksByTitle = memoize(fetchBooksByTitle, title => title);
 
 const BooksListSuspendable = ({ title }) => {
-  let books = [];
-
-  if (title.trim()) books = use(mFetchBooksByTitle(title));
+  const books = use(mFetchBooksByTitle(title));
 
   const hasBooks = books.length > 0;
 

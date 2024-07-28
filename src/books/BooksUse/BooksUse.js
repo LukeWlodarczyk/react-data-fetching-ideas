@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import { ErrorBoundary } from "react-error-boundary";
 
 import Page from "../../ui/Page";
 import BooksListStates from "../../ui/BooksListStates";
@@ -17,9 +18,12 @@ const Books = () => {
       <BasicInput value={title} onChange={onChange} />
       {!hasTitle && <BooksListStates.EmptyTitle />}
       {hasTitle && (
+        <ErrorBoundary FallbackComponent={BooksListStates.Error} >
             <Suspense fallback={<BooksListStates.Loading /> }>
                 <BooksListSuspendable title={paramTitle} />
             </Suspense>
+        </ErrorBoundary>
+        )}
     </Page>
   );
 };
