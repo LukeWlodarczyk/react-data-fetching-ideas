@@ -37,6 +37,18 @@
     border: 1px solid #333;
 }
 
+.resetButton {
+    width: 80%;
+    height: 24px;
+    border-radius: 16px;
+    border: 1px solid #333;
+}
+
+.resetButton:hover {
+    cursor: pointer;
+    color: #F67280;
+}
+
 .year {
     width: 15%;
     height: 24px;
