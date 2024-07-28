@@ -2,13 +2,13 @@ import { Suspense } from "react";
 import { useSWRConfig } from 'swr';
 import { ErrorBoundary } from "react-error-boundary";
 
-import Page from "../../ui/Page";
-import BooksListStates from "../../ui/BooksListStates";
-import { BasicInput } from "../../ui/SearchInput";
+import Page from "@/ui/Page";
+import BooksListStates from "@/ui/BooksListStates";
+import { BasicInput } from "@/ui/SearchInput";
 
 import BooksListSuspendable from './BooksListSuspendable';
 
-import useTitle from '../../hooks/useTitle';
+import useTitle from '@/hooks/useTitle';
 
 const Books = () => {
   const { title, paramTitle, onChange } = useTitle();

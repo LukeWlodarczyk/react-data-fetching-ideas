@@ -1,8 +1,8 @@
 import useSWR from 'swr'
 
-import BooksListStates from '../../ui/BooksListStates';
+import BooksListStates from '@/ui/BooksListStates';
 
-import { fetchBooksByTitle } from "../../api/books";
+import { fetchBooksByTitle } from "@/api/books";
 
 const swrConfig = { 
   revalidateIfStale: false, 

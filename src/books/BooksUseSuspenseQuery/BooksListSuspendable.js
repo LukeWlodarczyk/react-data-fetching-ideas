@@ -1,8 +1,8 @@
 import { useSuspenseQuery } from '@tanstack/react-query'
 
-import BooksListStates from '../../ui/BooksListStates';
+import BooksListStates from '@/ui/BooksListStates';
 
-import { fetchBooksByTitle } from "../../api/books";
+import { fetchBooksByTitle } from "@/api/books";
 
 const BooksListSuspendable = ({ title }) => {
   const { data: books } = useSuspenseQuery({

@@ -1,9 +1,9 @@
 import { use } from "react";
-import memoize from '../../api/memoize';
+import memoize from '@/api/memoize';
 
-import BooksListStates from "../../ui/BooksListStates";
+import BooksListStates from "@/ui/BooksListStates";
 
-import { fetchBooksByTitle } from "../../api/books";
+import { fetchBooksByTitle } from "@/api/books";
 
 const mFetchBooksByTitle = memoize(fetchBooksByTitle, title => title);
 

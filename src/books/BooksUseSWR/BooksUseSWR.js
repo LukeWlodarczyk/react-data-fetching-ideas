@@ -1,6 +1,6 @@
-import Page from "../../ui/Page";
-import BooksListStates from "../../ui/BooksListStates";
-import SearchInput from "../../ui/SearchInput";
+import Page from "@/ui/Page";
+import BooksListStates from "@/ui/BooksListStates";
+import SearchInput from "@/ui/SearchInput";
 
 import useBooks from "./useBooks";
 

@@ -1,4 +1,4 @@
-import BooksListStates from "../../ui/BooksListStates";
+import BooksListStates from "@/ui/BooksListStates";
 
 import { fetchBooksData } from "./resource";
 

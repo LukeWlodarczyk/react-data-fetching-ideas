@@ -4,9 +4,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import ALL_ROUTES, { BOOKS_ROUTES } from './routes';
 
-import AppContainer from "./ui/AppContainer";
-import Navigation from './ui/Navigation';
-import AppHeading from './ui/AppHeading';
+import AppContainer from '@/ui/AppContainer';
+import Navigation from '@/ui/Navigation';
+import AppHeading from '@/ui/AppHeading';
 
 export default function App() {
   return (

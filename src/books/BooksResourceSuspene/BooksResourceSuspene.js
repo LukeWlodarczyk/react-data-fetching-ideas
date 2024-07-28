@@ -1,12 +1,12 @@
 import React, { Suspense } from "react";
 
-import Page from "../../ui/Page";
-import BooksListStates from "../../ui/BooksListStates";
-import { BasicInput } from "../../ui/SearchInput";
+import Page from "@/ui/Page";
+import BooksListStates from "@/ui/BooksListStates";
+import { BasicInput } from "@/ui/SearchInput";
 
 import BooksListSuspendable from './BooksListSuspendable';
 
-import useTitle from '../../hooks/useTitle';
+import useTitle from '@/hooks/useTitle';
 
 const DEBOUNCE = 300;
 

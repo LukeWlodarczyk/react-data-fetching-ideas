@@ -1,6 +1,6 @@
 import _memoize from 'lodash/memoize';
 
-import { fetchBooksByTitle } from '../../api/books';
+import { fetchBooksByTitle } from '@/api/books';
 
 function _debounce(f, defaultTime = 0) {
     let timer = null;

@@ -1,8 +1,8 @@
 import useSWR from 'swr'
 
-import useTitle from '../../hooks/useTitle';
+import useTitle from '@/hooks/useTitle';
 
-import { fetchBooksByTitle } from "../../api/books";
+import { fetchBooksByTitle } from "@/api/books";
 
 const swrConfig = { 
     revalidateIfStale: false, 

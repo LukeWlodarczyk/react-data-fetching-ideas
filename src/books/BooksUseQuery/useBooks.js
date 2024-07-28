@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query'
 
-import useTitle from '../../hooks/useTitle';
+import useTitle from '@/hooks/useTitle';
 
-import { fetchBooksByTitle } from "../../api/books";
+import { fetchBooksByTitle } from "@/api/books";
 
 const useBooks = () => {
     const { title, onChange, paramTitle } = useTitle();
