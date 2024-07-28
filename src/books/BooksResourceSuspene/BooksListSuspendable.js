@@ -1,15 +1,19 @@
-import BooksList from '../../ui//BooksList';
+import BooksListStates from "../../ui/BooksListStates";
 
 import { fetchBooksData } from "./resource";
 
 const booksResource = fetchBooksData();
 
 const BooksListSuspendable = ({ title, debounce }) => {
-  let books = [];
+  const books = booksResource.read(title, { debounce, cacheEnabled: true });
 
-  if (title.trim()) books = booksResource.read(title, { debounce, cacheEnabled: true });
+  const hasBooks = books.length > 0;
 
-  return <BooksList books={books} />;
+  return (
+    hasBooks 
+      ? <BooksListStates.Success books={books} />  
+      : <BooksListStates.Empty />
+    )
 };
 
 export default BooksListSuspendable;

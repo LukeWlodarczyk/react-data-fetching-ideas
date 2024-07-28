@@ -1,7 +1,7 @@
 import { use } from "react";
 import _memoize from 'lodash/memoize';
 
-import BooksList from '../../ui//BooksList';
+import BooksListStates from "../../ui/BooksListStates";
 
 import { fetchBooksByTitle } from "../../api/books";
 
@@ -12,7 +12,13 @@ const BooksListSuspendable = ({ title }) => {
 
   if (title.trim()) books = use(mFetchBooksByTitle(title));
 
-  return <BooksList books={books} />;
+  const hasBooks = books.length > 0;
+
+  return (
+    hasBooks 
+      ? <BooksListStates.Success books={books} />  
+      : <BooksListStates.Empty />
+    )
 };
 
 export default BooksListSuspendable;

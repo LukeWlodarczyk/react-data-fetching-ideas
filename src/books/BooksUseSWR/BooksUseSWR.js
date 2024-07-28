@@ -1,7 +1,5 @@
 import Page from "../../ui/Page";
-import BooksListLoader from "../../ui/BooksListLoader";
-import ErrorMessage from '../../ui/ErrorMessage/ErrorMessage';
-import BooksList from '../../ui/BooksList';
+import BooksListStates from "../../ui/BooksListStates";
 import SearchInput from "../../ui/SearchInput";
 
 import useBooks from "./useBooks";
@@ -32,11 +30,11 @@ const Books = () => {
         isEmptyBooks={isNoBooksError}
         isError={isApiError}
       />
-      {isSuccess && <BooksList books={books} />}
-      {isLoading && <BooksListLoader />}
-      {isNoBooksError && <ErrorMessage message={`Books not found for provided title - ${title}`} />}
-      {isApiError && <ErrorMessage />}
-      {isEmptyTitle && <p>Type in book title</p>}
+      {isSuccess && <BooksListStates.Success books={books} />}
+      {isLoading && <BooksListStates.Loading />}
+      {isNoBooksError && <BooksListStates.Empty />}
+      {isApiError && <BooksListStates.Error />}
+      {isEmptyTitle && <BooksListStates.EmptyTitle />}
   </Page>
   );
 };

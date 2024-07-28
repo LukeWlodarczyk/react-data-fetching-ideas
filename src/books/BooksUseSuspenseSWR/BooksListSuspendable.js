@@ -1,7 +1,6 @@
 import useSWR from 'swr'
 
-import ErrorMessage from "../../ui/ErrorMessage/ErrorMessage";
-import BooksList from '../../ui//BooksList';
+import BooksListStates from '../../ui/BooksListStates';
 
 import { fetchBooksByTitle } from "../../api/books";
 
@@ -22,8 +21,8 @@ const BooksListSuspendable = ({ title }) => {
 
   return (
     hasBooks 
-      ? <BooksList books={books} />  
-      : <ErrorMessage message={`Books not found for provided title - ${title}`} />
+      ? <BooksListStates.Success books={books} />  
+      : <BooksListStates.Empty />
     )
 };
 
