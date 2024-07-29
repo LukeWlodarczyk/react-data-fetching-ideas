@@ -5,7 +5,7 @@ import Page from '@/ui/Page';
 import BooksListStates from '@/ui/BooksListStates';
 import { BasicInput } from '@/ui/SearchInput';
 
-import BooksListSuspendable from './BooksListSuspendable';
+import SuspendableResource from './SuspendableResource';
 
 import useTitle from '@/hooks/useTitle';
 
@@ -25,7 +25,15 @@ const Books = () => {
       {hasTitle && (
         <ErrorBoundary FallbackComponent={BooksListStates.Error}>
           <Suspense fallback={<BooksListStates.Loading />}>
-            <BooksListSuspendable suspender={mFetchBooksByTitle(paramTitle)} />
+            <SuspendableResource suspender={mFetchBooksByTitle(paramTitle)}>
+              {(data) =>
+                data.length > 0 ? (
+                  <BooksListStates.Success books={data} />
+                ) : (
+                  <BooksListStates.Empty />
+                )
+              }
+            </SuspendableResource>
           </Suspense>
         </ErrorBoundary>
       )}
