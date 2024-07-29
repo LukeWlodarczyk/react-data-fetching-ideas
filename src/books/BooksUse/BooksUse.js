@@ -9,6 +9,11 @@ import BooksListSuspendable from './BooksListSuspendable';
 
 import useTitle from '@/hooks/useTitle';
 
+import memoize from '@/api/memoize';
+import { fetchBooksByTitle } from '@/api/books';
+
+const mFetchBooksByTitle = memoize(fetchBooksByTitle);
+
 const Books = () => {
   const { title, paramTitle, onChange } = useTitle();
   const hasTitle = Boolean(paramTitle.trim());
@@ -20,7 +25,7 @@ const Books = () => {
       {hasTitle && (
         <ErrorBoundary FallbackComponent={BooksListStates.Error}>
           <Suspense fallback={<BooksListStates.Loading />}>
-            <BooksListSuspendable title={paramTitle} />
+            <BooksListSuspendable suspender={mFetchBooksByTitle(paramTitle)} />
           </Suspense>
         </ErrorBoundary>
       )}
