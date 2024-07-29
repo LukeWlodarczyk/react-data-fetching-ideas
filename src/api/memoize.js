@@ -1,4 +1,4 @@
-const memoize = (fetcher, resolver) => {
+const memoize = (fetcher, resolver = (...args) => args[0]) => {
   const cacheMap = new Map();
 
   return (...args) => {
