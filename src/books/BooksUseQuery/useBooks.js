@@ -13,14 +13,15 @@ const useBooks = () => {
     isFetched,
     isLoading,
     isError,
+    refetch,
   } = useQuery({
     queryKey: [paramTitle],
     queryFn: () => fetchBooksByTitle(paramTitle),
     enabled: hasTitle,
   });
 
-  const hasBooks = Boolean(isFetched && books.length);
-  const isNoBooksError = Boolean(isFetched && !books.length);
+  const hasBooks = Boolean(isFetched && books && books.length);
+  const isNoBooksError = Boolean(isFetched && books && !books.length);
 
   return {
     books,
@@ -29,6 +30,7 @@ const useBooks = () => {
     isEmptyTitle: !hasTitle,
     isApiError: isError,
     isNoBooksError,
+    refetch,
     title,
     onChangeTitle: onChange,
   };
