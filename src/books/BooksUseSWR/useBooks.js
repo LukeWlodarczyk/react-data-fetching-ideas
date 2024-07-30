@@ -16,7 +16,10 @@ const useBooks = () => {
     data: books,
     isLoading,
     error,
+    mutate,
   } = useSWR(paramTitle, fetchBooksByTitle, swrConfig);
+
+  const refetch = () => mutate();
 
   const isFetched = Boolean(books);
   const hasBooks = Boolean(isFetched && books.length);
@@ -31,6 +34,7 @@ const useBooks = () => {
     isEmptyTitle: !hasTitle,
     isApiError,
     isNoBooksError,
+    refetch,
     title,
     onChangeTitle: onChange,
   };
