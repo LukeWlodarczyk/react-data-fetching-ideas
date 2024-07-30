@@ -2,7 +2,7 @@ import styles from './Card.module.css';
 
 import BookCoverImgPlaceholder from '../../../BookCoverImgPlaceholder';
 
-const Card = ({ coverImgClass, isLoading, onReset }) => (
+const Card = ({ coverImgClass, isLoading, onRetry }) => (
   <div className={styles.wrapper}>
     <div className={styles.placeholderWrapper}>
       <BookCoverImgPlaceholder
@@ -12,8 +12,8 @@ const Card = ({ coverImgClass, isLoading, onReset }) => (
     </div>
     <div className={styles.description}>
       <div className={styles.heading}>
-        {onReset ? (
-          <button onClick={onReset} className={styles.resetButton}>
+        {onRetry ? (
+          <button onClick={onRetry} className={styles.retryButton}>
             Retry
           </button>
         ) : (

@@ -10,10 +10,7 @@ export default {
   ),
   Loading: () => <ListPlaceholder isLoading />,
   Empty: () => <ListPlaceholder coverImgClass={styles.emptyCoverImg} />,
-  Error: ({ resetErrorBoundary }) => (
-    <ListPlaceholder
-      coverImgClass={styles.errorCoverImg}
-      onReset={resetErrorBoundary}
-    />
+  Error: ({ onRetry }) => (
+    <ListPlaceholder coverImgClass={styles.errorCoverImg} onRetry={onRetry} />
   ),
 };

@@ -37,14 +37,14 @@
   border: 1px solid #333;
 }
 
-.resetButton {
+.retryButton {
   width: 80%;
   height: 24px;
   border-radius: 16px;
   border: 1px solid #333;
 }
 
-.resetButton:hover {
+.retryButton:hover {
   cursor: pointer;
   color: #f67280;
 }

@@ -1,10 +1,10 @@
 import Card from '../Card';
 
-const List = ({ coverImgClass = '', isLoading = false, onReset, count = 3 }) =>
+const List = ({ coverImgClass = '', isLoading = false, onRetry, count = 3 }) =>
   Array.from({ length: count }).map((_, i) => (
     <Card
       key={i}
-      onReset={onReset}
+      onRetry={onRetry}
       isLoading={isLoading}
       coverImgClass={coverImgClass}
     />
