@@ -19,12 +19,12 @@ const useBooks = () => {
     mutate,
   } = useSWR(paramTitle, fetchBooksByTitle, swrConfig);
 
-  const refetch = () => mutate();
+  const refetch = () => mutate(undefined, { revalidate: true });
 
   const isFetched = Boolean(books);
   const hasBooks = Boolean(isFetched && books.length);
   const isNoBooksError = Boolean(isFetched && !books.length);
-  const isApiError = Boolean(error);
+  const isApiError = Boolean(error) && !isFetched && !isLoading;
   const hasTitle = Boolean(paramTitle.trim());
 
   return {
