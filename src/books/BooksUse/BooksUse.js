@@ -23,7 +23,7 @@ const Books = () => {
       <BasicInput value={title} onChange={onChange} />
       {!hasTitle && <BooksListStates.EmptyTitle />}
       {hasTitle && (
-        <ErrorBoundary FallbackComponent={BooksListStates.Error}>
+          resetKeys={[title]}
           <Suspense fallback={<BooksListStates.Loading />}>
             <SuspendableResource suspender={mFetchBooksByTitle(paramTitle)}>
               {(data) =>

@@ -26,6 +26,7 @@ const Books = () => {
         <ErrorBoundary
           FallbackComponent={BooksListStates.Error}
           onReset={handleOnReset}
+          resetKeys={[title]}
         >
           <Suspense fallback={<BooksListStates.Loading />}>
             <BooksListSuspendable title={paramTitle} />
