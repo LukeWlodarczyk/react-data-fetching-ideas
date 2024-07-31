@@ -22,7 +22,9 @@ const Books = () => {
       {!hasTitle && <BooksListStates.EmptyTitle />}
       {hasTitle && (
         <ErrorBoundary
-          FallbackComponent={BooksListStates.Error}
+          FallbackComponent={({ resetErrorBoundary }) => (
+            <BooksListStates.Error onRetry={resetErrorBoundary} />
+          )}
           onReset={reset}
           resetKeys={[title]}
         >

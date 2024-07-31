@@ -16,7 +16,7 @@ const Books = () => {
 
   const { mutate } = useSWRConfig();
   const handleOnReset = () =>
-    mutate(paramTitle, undefined, { revalidate: false });
+    mutate(paramTitle, undefined, { revalidate: true });
 
   return (
     <Page>
@@ -24,7 +24,9 @@ const Books = () => {
       {!hasTitle && <BooksListStates.EmptyTitle />}
       {hasTitle && (
         <ErrorBoundary
-          FallbackComponent={BooksListStates.Error}
+          FallbackComponent={({ resetErrorBoundary }) => (
+            <BooksListStates.Error onRetry={resetErrorBoundary} />
+          )}
           onReset={handleOnReset}
           resetKeys={[title]}
         >
