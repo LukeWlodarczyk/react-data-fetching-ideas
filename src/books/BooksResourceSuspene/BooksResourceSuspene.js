@@ -23,7 +23,7 @@ const Books = () => {
 
   return (
     <Page>
-      <BasicInput value={input.value} onChange={input.onChange} />
+      <BasicInput autoFocus value={input.value} onChange={input.onChange} />
       {!param.hasValue && <BooksListStates.EmptyTitle />}
       {param.hasValue && (
         <ErrorBoundary
