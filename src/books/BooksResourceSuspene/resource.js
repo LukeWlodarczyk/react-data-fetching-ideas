@@ -16,7 +16,12 @@ const createResource = (fetcher) => {
       }
     );
 
-  const dInitFetch = _debounce(initFetch);
+  const reset = () => {
+    prevQuery = undefined;
+    status = 'pending';
+    response = undefined;
+    suspender = undefined;
+  };
 
   const read = (query) => {
     if (!suspender || prevQuery !== query) {
@@ -35,7 +40,7 @@ const createResource = (fetcher) => {
     }
   };
 
-  return { read };
+  return { read, reset };
 };
 
 export default createResource;
