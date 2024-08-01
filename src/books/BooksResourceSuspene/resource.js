@@ -1,42 +1,11 @@
-import _memoize from 'lodash/memoize';
-
-import { fetchBooksByTitle } from '@/api/books';
-
-function _debounce(f, defaultTime = 0) {
-  let timer = null;
-  let time = defaultTime;
-
-  const debounced = (...args) => {
-    if (time === 0) return f(...args);
-
-    return new Promise((resolve) => {
-      clearTimeout(timer);
-      timer = setTimeout(() => resolve(f(...args)), time);
-    });
-  };
-
-  debounced.cancel = () => {
-    clearTimeout(timer);
-  };
-
-  debounced.setTime = (msec) => {
-    time = msec;
-    return debounced;
-  };
-
-  return debounced;
-}
-
-export const fetchBooksData = () => createBookResource(fetchBooksByTitle);
-
-const createBookResource = (fetcher) => {
-  let prevTitle = '';
+const createResource = (fetcher) => {
+  let prevQuery;
   let status = 'pending';
   let response;
   let suspender;
 
-  const initFetch = (arg, { cacheEnabled }) =>
-    fetcher(arg, { cacheEnabled }).then(
+  const createSuspender = (query) =>
+    fetcher(query).then(
       (res) => {
         status = 'success';
         response = res;
@@ -49,14 +18,11 @@ const createBookResource = (fetcher) => {
 
   const dInitFetch = _debounce(initFetch);
 
-  const read = (title, { debounce = 0, cacheEnabled = false } = {}) => {
-    if (!suspender || prevTitle !== title) {
-      prevTitle = title;
+  const read = (query) => {
+    if (!suspender || prevQuery !== query) {
+      prevQuery = query;
       status = 'pending';
-      const createSuspender = debounce
-        ? dInitFetch.setTime(debounce)
-        : initFetch;
-      suspender = createSuspender(title, { cacheEnabled });
+      suspender = createSuspender(query);
     }
 
     switch (status) {
@@ -71,3 +37,5 @@ const createBookResource = (fetcher) => {
 
   return { read };
 };
+
+export default createResource;
