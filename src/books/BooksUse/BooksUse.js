@@ -20,7 +20,7 @@ const Books = () => {
 
   return (
     <Page>
-      <BasicInput value={title} onChange={onChange} />
+      <BasicInput autoFocus value={title} onChange={onChange} />
       {!hasTitle && <BooksListStates.EmptyTitle />}
       {hasTitle && (
         <ErrorBoundary
