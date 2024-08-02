@@ -8,28 +8,29 @@ import { BasicInput } from '@/ui/SearchInput';
 
 import BooksListSuspendable from './BooksListSuspendable';
 
-import useTitle from '@/hooks/useTitle';
+import useInputWithDebouncedParam from '@/hooks/useInputWithDebouncedParam';
 
 const Books = () => {
-  const { title, paramTitle, onChange } = useTitle();
-  const hasTitle = Boolean(paramTitle.trim());
+  const { input, param } = useInputWithDebouncedParam({
+    paramName: 'title',
+  });
 
   const { reset } = useQueryErrorResetBoundary();
 
   return (
     <Page>
-      <BasicInput autoFocus value={title} onChange={onChange} />
-      {!hasTitle && <BooksListStates.EmptyTitle />}
-      {hasTitle && (
+      <BasicInput autoFocus value={input.value} onChange={input.onChange} />
+      {!param.hasValue && <BooksListStates.EmptyTitle />}
+      {param.hasValue && (
         <ErrorBoundary
           FallbackComponent={({ resetErrorBoundary }) => (
             <BooksListStates.Error onRetry={resetErrorBoundary} />
           )}
           onReset={reset}
-          resetKeys={[title]}
+          resetKeys={[input.value]}
         >
           <Suspense fallback={<BooksListStates.Loading />}>
-            <BooksListSuspendable title={paramTitle} />
+            <BooksListSuspendable title={param.value} />
           </Suspense>
         </ErrorBoundary>
       )}
