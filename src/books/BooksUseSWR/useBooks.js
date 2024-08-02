@@ -1,6 +1,6 @@
 import useSWR from 'swr';
 
-import useTitle from '@/hooks/useTitle';
+import useInputWithDebouncedParam from '@/hooks/useInputWithDebouncedParam';
 
 import { fetchBooksByTitle } from '@/api/books';
 
@@ -11,13 +11,13 @@ const swrConfig = {
 };
 
 const useBooks = () => {
-  const { title, onChange, paramTitle } = useTitle();
+  const { input, param } = useInputWithDebouncedParam({ paramName: 'title' });
   const {
     data: books,
     isLoading,
     error,
     mutate,
-  } = useSWR(paramTitle, fetchBooksByTitle, swrConfig);
+  } = useSWR(param.value, fetchBooksByTitle, swrConfig);
 
   const refetch = () => mutate(undefined, { revalidate: true });
 
@@ -25,18 +25,16 @@ const useBooks = () => {
   const hasBooks = Boolean(isFetched && books.length);
   const isNoBooksError = Boolean(isFetched && !books.length);
   const isApiError = Boolean(error) && !isFetched && !isLoading;
-  const hasTitle = Boolean(paramTitle.trim());
 
   return {
     books,
     isLoading,
     isSuccess: hasBooks,
-    isEmptyTitle: !hasTitle,
+    isEmptyTitle: !param.hasValue,
     isApiError,
     isNoBooksError,
     refetch,
-    title,
-    onChangeTitle: onChange,
+    input,
   };
 };
 
