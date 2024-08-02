@@ -24,27 +24,29 @@ const Books = () => {
   return (
     <Page>
       <BasicInput autoFocus value={input.value} onChange={input.onChange} />
-      {!param.hasValue && <BooksListStates.EmptyTitle />}
-      {param.hasValue && (
-        <ErrorBoundary
-          FallbackComponent={({ resetErrorBoundary }) => (
-            <BooksListStates.Error onRetry={resetErrorBoundary} />
-          )}
-          resetKeys={[param.value]}
-          onReset={booksResource.reset}
-        >
-          <Suspense fallback={<BooksListStates.Loading />}>
-            <SuspendableResource resource={booksResource} query={param.value}>
-              {(data) => (
-                <>
-                  {data.length > 0 && <BooksListStates.Success books={data} />}
-                  {data.length === 0 && <BooksListStates.Empty />}
-                </>
-              )}
-            </SuspendableResource>
-          </Suspense>
-        </ErrorBoundary>
-      )}
+      <ErrorBoundary
+        FallbackComponent={({ resetErrorBoundary }) => (
+          <BooksListStates.Error onRetry={resetErrorBoundary} />
+        )}
+        resetKeys={[param.value]}
+        onReset={booksResource.reset}
+      >
+        <Suspense fallback={<BooksListStates.Loading />}>
+          <SuspendableResource
+            resource={booksResource}
+            query={param.value}
+            isDisabled={!param.hasValue}
+          >
+            {({ data, isDisabled }) => (
+              <>
+                {data?.length > 0 && <BooksListStates.Success books={data} />}
+                {data?.length === 0 && <BooksListStates.Empty />}
+                {isDisabled && <BooksListStates.EmptyTitle />}
+              </>
+            )}
+          </SuspendableResource>
+        </Suspense>
+      </ErrorBoundary>
     </Page>
   );
 };
