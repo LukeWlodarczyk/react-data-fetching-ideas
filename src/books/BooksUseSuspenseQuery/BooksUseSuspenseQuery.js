@@ -6,7 +6,9 @@ import Page from '@/ui/Page';
 import BooksListStates from '@/ui/BooksListStates';
 import { BasicInput } from '@/ui/SearchInput';
 
-import BooksListSuspendable from './BooksListSuspendable';
+import { fetchBooksByTitle } from '@/api/books';
+
+import SuspendableResource from './SuspendableResource';
 
 import useInputWithDebouncedParam from '@/hooks/useInputWithDebouncedParam';
 
@@ -20,20 +22,25 @@ const Books = () => {
   return (
     <Page>
       <BasicInput autoFocus value={input.value} onChange={input.onChange} />
-      {!param.hasValue && <BooksListStates.EmptyTitle />}
-      {param.hasValue && (
-        <ErrorBoundary
-          FallbackComponent={({ resetErrorBoundary }) => (
-            <BooksListStates.Error onRetry={resetErrorBoundary} />
+      <ErrorBoundary
+        FallbackComponent={({ resetErrorBoundary }) => (
+          <BooksListStates.Error onRetry={resetErrorBoundary} />
+        )}
+        onReset={reset}
+        resetKeys={[param.value]}
+      >
+        <Suspense fallback={<BooksListStates.Loading />}>
+          {param.hasValue && (
+            <SuspendableResource
+              query={param.value}
+              fetcher={fetchBooksByTitle}
+              onSuccess={(data) => <BooksListStates.Success books={data} />}
+              onEmpty={() => <BooksListStates.Empty />}
+            />
           )}
-          onReset={reset}
-          resetKeys={[input.value]}
-        >
-          <Suspense fallback={<BooksListStates.Loading />}>
-            <BooksListSuspendable title={param.value} />
-          </Suspense>
-        </ErrorBoundary>
-      )}
+          {!param.hasValue && <BooksListStates.EmptyTitle />}
+        </Suspense>
+      </ErrorBoundary>
     </Page>
   );
 };
