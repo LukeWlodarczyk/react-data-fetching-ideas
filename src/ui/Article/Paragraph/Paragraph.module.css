@@ -1,0 +1,9 @@
+.paragraph {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0 0 1.5em 0;
+    color: #444;
+    text-align: justify;
+    border-left: 4px solid #FF9E9E;
+    padding: 0.5em 1em;
+}
