@@ -1,0 +1,70 @@
+.magician {
+    width: 150px;
+    height: 150px;
+}
+
+.magician :global g#arm-with-hat path#right-arm  {
+    transition: .3s;
+    transform-origin: 47% 46%;
+    transform: rotate(35deg);
+}
+ 
+.animate :global g#arm-with-hat path#right-arm {
+    transform: rotate(0);
+}
+
+.magician :global g#arm-with-hat {
+    transition: .3s;
+    transform-origin: 47% 46%;
+    transform: rotate(-35deg);
+}
+ 
+.animate :global g#arm-with-hat {
+    transition-delay: .3s;
+    transform: rotate(0);
+}
+
+.magician :global g#arm-with-hat g#hat {
+    transition: .3s;
+    transform-origin: 61% 35%;
+    transform: rotate(-145deg);
+ }
+ 
+.animate :global g#arm-with-hat g#hat {
+    transition-delay: .3s;
+    transform: rotate(0);
+}
+
+.magician :global g#arm-with-wand {
+   transition: .3s;
+   transform-origin: 40% 47%;
+}
+
+.animate :global g#arm-with-wand {
+    transition-delay: .6s;
+    transform: rotate(30deg);
+}
+
+.magician :global g#arm-with-wand path#wand {
+    transition: .3s;
+    transform-origin: 26% 46%;
+ }
+ 
+ .animate :global g#arm-with-wand path#wand {
+     transition-delay: .8s;
+     transform: rotate(60deg);
+ }
+
+.magician :global g#rabbit {
+    transition: .3s;
+    filter: blur(60px);
+    opacity: 0;
+    transform: translateY(-60px) ;
+}
+
+.animate :global g#rabbit {
+    transition-delay: .8s;
+    filter: blur(0);
+    opacity: 1;
+    transform: translateY(0);
+}
