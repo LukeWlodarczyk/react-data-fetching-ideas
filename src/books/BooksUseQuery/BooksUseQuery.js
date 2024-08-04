@@ -13,8 +13,7 @@ const Books = () => {
     isApiError,
     isNoBooksError,
     refetch,
-    title,
-    onChangeTitle,
+    input,
   } = useBooks();
 
   return (
@@ -23,8 +22,8 @@ const Books = () => {
         autoFocus
         name="title"
         placeholder="book title..."
-        value={title}
-        onChange={onChangeTitle}
+        value={input.value}
+        onChange={input.onChange}
         isLoading={isLoading}
         isSuccess={isSuccess}
         isEmpty={isEmptyTitle}

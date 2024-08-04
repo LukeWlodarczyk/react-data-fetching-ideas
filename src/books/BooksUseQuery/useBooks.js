@@ -1,12 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 
-import useTitle from '@/hooks/useTitle';
+import useInputWithDebouncedParam from '@/hooks/useInputWithDebouncedParam';
 
 import { fetchBooksByTitle } from '@/api/books';
 
 const useBooks = () => {
-  const { title, onChange, paramTitle } = useTitle();
-  const hasTitle = Boolean(paramTitle.trim());
+  const { input, param } = useInputWithDebouncedParam({
+    paramName: 'title',
+  });
 
   const {
     data: books,
@@ -15,9 +16,9 @@ const useBooks = () => {
     isError,
     refetch,
   } = useQuery({
-    queryKey: [paramTitle],
-    queryFn: () => fetchBooksByTitle(paramTitle),
-    enabled: hasTitle,
+    queryKey: [param.value],
+    queryFn: () => fetchBooksByTitle(param.value),
+    enabled: param.hasValue,
   });
 
   const hasBooks = Boolean(isFetched && books && books.length);
@@ -27,12 +28,11 @@ const useBooks = () => {
     books,
     isLoading,
     isSuccess: hasBooks,
-    isEmptyTitle: !hasTitle,
+    isEmptyTitle: !param.hasValue,
     isApiError: isError,
     isNoBooksError,
     refetch,
-    title,
-    onChangeTitle: onChange,
+    input,
   };
 };
 
