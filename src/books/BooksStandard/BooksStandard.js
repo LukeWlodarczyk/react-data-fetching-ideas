@@ -1,22 +1,41 @@
-import BooksListLoader from "../../ui/BooksListLoader";
+import Page from '@/ui/Page';
+import SearchInput from '@/ui/SearchInput';
+import BooksListStates from '@/ui/BooksListStates';
 
-import BooksList from '../../ui//BooksList';
-import SearchInput from "../../ui/SearchInput";
-
-import useBooks from "./useBooks";
+import useBooks from './useBooks';
 
 const Books = () => {
-  const { books, showLoader, showBooks, showNoTitleInfo, isApiError, isNoBooksError, title, onChangeTitle } = useBooks();
+  const {
+    books,
+    isLoading,
+    isSuccess,
+    isEmptyTitle,
+    isApiError,
+    isNoBooksError,
+    title,
+    onChangeTitle,
+  } = useBooks();
 
   return (
-    <div>
-      <SearchInput name='title' placeholder='book title...' value={title} onChange={onChangeTitle} />
-      {showLoader &&  <BooksListLoader /> }
-      {showBooks && <BooksList books={books} />}
-      {isNoBooksError && <ErrorMessage message={`Books not found for provided title - ${title}`} />}
-      {isApiError && <ErrorMessage />}
-      {showNoTitleInfo && <p>Type in book title</p>}
-    </div>
+    <Page>
+      <SearchInput
+        autoFocus
+        name="title"
+        placeholder="book title..."
+        value={title}
+        onChange={onChangeTitle}
+        isLoading={isLoading}
+        isSuccess={isSuccess}
+        isEmpty={isEmptyTitle}
+        isEmptyBooks={isNoBooksError}
+        isError={isApiError}
+      />
+      {isSuccess && <BooksListStates.Success books={books} />}
+      {isLoading && <BooksListStates.Loading />}
+      {isNoBooksError && <BooksListStates.Empty />}
+      {isApiError && <BooksListStates.Error />}
+      {isEmptyTitle && <BooksListStates.EmptyTitle />}
+    </Page>
   );
 };
 
