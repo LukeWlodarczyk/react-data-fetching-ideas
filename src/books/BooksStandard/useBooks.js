@@ -1,34 +1,25 @@
-import { useState } from "react";
-import _debounce from 'lodash/debounce';
+import useInputWithDebouncedParam from '@/hooks/useInputWithDebouncedParam';
 
 import useBooksApi from './useBooksApi';
 
 const useBooks = () => {
-  const [title, setTitle] = useState('the lord of the rings');
+  const { input, param } = useInputWithDebouncedParam({ paramName: 'title' });
 
-  const { books, isLoading, error, refetch } = useBooksApi(title);
-
-  const onChangeTitle = e => {
-    const { value } = e.target;
-
-    setTitle(value);
-    refetch(value, { debounce: 400, abortParallel: true });
-  };
+  const { books, isLoading, isDone, error, refetch } = useBooksApi(title);
 
   const isApiError = Boolean(error);
-  const hasTitle = Boolean(title.trim());
   const hasBooks = Boolean(books.length);
 
-  return { 
-    books, 
-    isLoading, 
-    showBooks: !isLoading && !isApiError && hasBooks,
-    showNoTitleInfo: !hasTitle,
+  return {
+    books,
+    isLoading,
+    isSuccess: !isLoading && !isApiError && hasBooks,
+    isEmptyTitle: !param.hasValue,
     isApiError,
-    isNoBooksError: !isLoading && !isApiError && !hasBooks && hasTitle,
-    title, 
-    onChangeTitle 
+    isNoBooksError: isDone && !isApiError && !hasBooks && param.hasValue,
+    input,
+    refetch: () => refetch(param.value),
   };
-}
+};
 
 export default useBooks;
