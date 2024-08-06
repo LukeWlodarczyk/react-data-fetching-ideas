@@ -7,7 +7,7 @@ import { BasicInput } from '@/ui/SearchInput';
 
 import SuspendableResource from './SuspendableResource';
 
-import useTitle from '@/hooks/useTitle';
+import useInputWithDebouncedParam from '@/hooks/useInputWithDebouncedParam';
 
 import memoize from '@/api/memoize';
 import { fetchBooksByTitle } from '@/api/books';
@@ -15,22 +15,23 @@ import { fetchBooksByTitle } from '@/api/books';
 const mFetchBooksByTitle = memoize(fetchBooksByTitle);
 
 const Books = () => {
-  const { title, paramTitle, onChange } = useTitle();
-  const hasTitle = Boolean(paramTitle.trim());
+  const { input, param } = useInputWithDebouncedParam({
+    paramName: 'title',
+  });
 
   return (
     <Page>
-      <BasicInput autoFocus value={title} onChange={onChange} />
-      {!hasTitle && <BooksListStates.EmptyTitle />}
-      {hasTitle && (
+      <BasicInput autoFocus value={input.value} onChange={input.onChange} />
+      {!param.hasValue && <BooksListStates.EmptyTitle />}
+      {param.hasValue && (
         <ErrorBoundary
           FallbackComponent={({ resetErrorBoundary }) => (
             <BooksListStates.Error onRetry={resetErrorBoundary} />
           )}
-          resetKeys={[title]}
+          resetKeys={[param.value]}
         >
           <Suspense fallback={<BooksListStates.Loading />}>
-            <SuspendableResource suspender={mFetchBooksByTitle(paramTitle)}>
+            <SuspendableResource suspender={mFetchBooksByTitle(param.value)}>
               {(data) =>
                 data.length > 0 ? (
                   <BooksListStates.Success books={data} />
