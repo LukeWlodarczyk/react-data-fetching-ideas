@@ -13,7 +13,7 @@ const Books = () => {
     isApiError,
     isNoBooksError,
     title,
-    onChangeTitle,
+    refetch,
   } = useBooks();
 
   return (
@@ -33,7 +33,7 @@ const Books = () => {
       {isSuccess && <BooksListStates.Success books={books} />}
       {isLoading && <BooksListStates.Loading />}
       {isNoBooksError && <BooksListStates.Empty />}
-      {isApiError && <BooksListStates.Error />}
+      {isApiError && <BooksListStates.Error onRetry={refetch} />}
       {isEmptyTitle && <BooksListStates.EmptyTitle />}
     </Page>
   );
