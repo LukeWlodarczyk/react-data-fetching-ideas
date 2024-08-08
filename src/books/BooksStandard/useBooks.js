@@ -5,7 +5,7 @@ import useBooksApi from './useBooksApi';
 const useBooks = () => {
   const { input, param } = useInputWithDebouncedParam({ paramName: 'title' });
 
-  const { books, isLoading, isDone, error, refetch } = useBooksApi(
+  const { data, isLoading, isSuccess, error, refetch } = useBooksApi(
     param.value,
     {
       enable: param.hasValue,
@@ -13,15 +13,15 @@ const useBooks = () => {
   );
 
   const isApiError = Boolean(error);
-  const hasBooks = Boolean(books.length);
+  const hasBooks = Boolean(data?.length);
 
   return {
-    books,
+    books: data,
     isLoading,
-    isSuccess: !isLoading && !isApiError && hasBooks,
+    isSuccess: isSuccess && hasBooks,
+    isEmptySuccess: isSuccess && !hasBooks,
     isEmptyTitle: !param.hasValue,
     isApiError,
-    isNoBooksError: isDone && !isApiError && !hasBooks && param.hasValue,
     input,
     refetch: () => refetch(param.value),
   };

@@ -9,9 +9,9 @@ const Books = () => {
     books,
     isLoading,
     isSuccess,
+    isEmptySuccess,
     isEmptyTitle,
     isApiError,
-    isNoBooksError,
     input,
     refetch,
   } = useBooks();
@@ -27,12 +27,12 @@ const Books = () => {
         isLoading={isLoading}
         isSuccess={isSuccess}
         isEmpty={isEmptyTitle}
-        isEmptyBooks={isNoBooksError}
+        isEmptyBooks={isEmptySuccess}
         isError={isApiError}
       />
       {isSuccess && <BooksListStates.Success books={books} />}
       {isLoading && <BooksListStates.Loading />}
-      {isNoBooksError && <BooksListStates.Empty />}
+      {isEmptySuccess && <BooksListStates.Empty />}
       {isApiError && <BooksListStates.Error onRetry={refetch} />}
       {isEmptyTitle && <BooksListStates.EmptyTitle />}
     </Page>
