@@ -1,40 +1,27 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useReducer } from 'react';
 
 import { fetchBooksByTitle } from '@/api/books';
 
-const LOADING_STATE = {
-  IDLE: 'IDLE',
-  LOADING: 'LOADING',
-  DONE: 'DONE',
-};
+import { reducer, initialState, ACTIONS, REQUEST_STATUS } from './reducer';
 
 const useBooksApi = (title, { enable }) => {
-  const [books, setBooks] = useState([]);
-  const [loadingState, setLoadingState] = useState(LOADING_STATE.IDLE);
-  const [error, setError] = useState(null);
-
-  const setInitialState = () => {
-    setBooks([]);
-    setLoadingState(LOADING_STATE.IDLE);
-    setError(null);
-  };
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   const getBooksByTitle = async (
     title,
     { ac = new AbortController() } = {}
   ) => {
-    setInitialState();
-    setLoadingState(LOADING_STATE.LOADING);
+    dispatch({ type: ACTIONS.INIT });
 
     try {
-      const books = await fetchBooksByTitle(title, {
+      const data = await fetchBooksByTitle(title, {
         signal: ac.signal,
       });
-      setBooks(books);
+
+      dispatch({ type: ACTIONS.RESOLVE, payload: data });
     } catch (error) {
-      if (!ac.signal.aborted) setError(error);
-    } finally {
-      if (!ac.signal.aborted) setLoadingState(LOADING_STATE.DONE);
+      if (!ac.signal.aborted)
+        dispatch({ type: ACTIONS.REJECT, payload: error });
     }
   };
 
@@ -42,15 +29,17 @@ const useBooksApi = (title, { enable }) => {
     const ac = new AbortController();
 
     if (enable) getBooksByTitle(title, { ac });
-    else setInitialState();
+    else dispatch({ type: ACTIONS.RESET });
 
     return () => ac.abort();
   }, [title, enable]);
 
+  const { data, error, status } = state;
+
   return {
-    books,
-    isLoading: loadingState === LOADING_STATE.LOADING,
-    isDone: loadingState === LOADING_STATE.DONE,
+    data,
+    isLoading: status === REQUEST_STATUS.LOADING,
+    isSuccess: status === REQUEST_STATUS.SUCCESS,
     error,
     refetch: getBooksByTitle,
   };
