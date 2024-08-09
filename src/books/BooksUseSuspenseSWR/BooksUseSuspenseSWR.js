@@ -1,45 +1,34 @@
 import { Suspense } from 'react';
-import { useSWRConfig } from 'swr';
 import { ErrorBoundary } from 'react-error-boundary';
 
 import Page from '@/ui/Page';
 import BooksListStates from '@/ui/BooksListStates';
 import { BasicInput } from '@/ui/SearchInput';
 
+import useInputWithDebouncedParam from '@/hooks/useInputWithDebouncedParam';
 import { fetchBooksByTitle } from '@/api/books';
 
 import SuspendableResource from './SuspendableResource';
 
-import useInputWithDebouncedParam from '@/hooks/useInputWithDebouncedParam';
-
-const ERROR_BOUNDARY_RESET_REASON = {
-  KEYS: 'keys',
-  IMPERATIVE_API: 'imperative-api',
-};
+import useSWRErrorBoundaryReset from './useSWRErrorBoundaryReset';
 
 const Books = () => {
   const { input, param } = useInputWithDebouncedParam({
     paramName: 'title',
   });
 
-  const { mutate } = useSWRConfig();
-  const handleOnReset = (reset) => {
-    const key =
-      reset.reason === ERROR_BOUNDARY_RESET_REASON.KEYS
-        ? reset.prev[0]
-        : param.value;
-
-    mutate(key, undefined, { revalidate: true });
-  };
+  const { reset } = useSWRErrorBoundaryReset();
 
   return (
     <Page>
       <BasicInput autoFocus value={input.value} onChange={input.onChange} />
       <ErrorBoundary
         FallbackComponent={({ resetErrorBoundary }) => (
-          <BooksListStates.Error onRetry={resetErrorBoundary} />
+          <BooksListStates.Error
+            onRetry={() => resetErrorBoundary(param.value)}
+          />
         )}
-        onReset={handleOnReset}
+        onReset={reset}
         resetKeys={[param.value]}
       >
         <Suspense fallback={<BooksListStates.Loading />}>
