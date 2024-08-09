@@ -22,17 +22,17 @@ const useBooks = () => {
   const refetch = () => mutate(undefined, { revalidate: true });
 
   const isFetched = Boolean(books);
-  const hasBooks = Boolean(isFetched && books.length);
-  const isNoBooksError = Boolean(isFetched && !books.length);
+  const isSuccess = Boolean(isFetched && books.length);
+  const isEmptySuccess = Boolean(isFetched && !books.length);
   const isApiError = Boolean(error) && !isFetched && !isLoading;
 
   return {
     books,
     isLoading,
-    isSuccess: hasBooks,
+    isSuccess,
+    isEmptySuccess,
     isEmptyTitle: !param.hasValue,
     isApiError,
-    isNoBooksError,
     refetch,
     input,
   };

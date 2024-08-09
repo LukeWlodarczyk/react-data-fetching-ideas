@@ -21,16 +21,16 @@ const useBooks = () => {
     enabled: param.hasValue,
   });
 
-  const hasBooks = Boolean(isFetched && books && books.length);
-  const isNoBooksError = Boolean(isFetched && books && !books.length);
+  const isSuccess = Boolean(isFetched && books && books.length);
+  const isEmptySuccess = Boolean(isFetched && books && !books.length);
 
   return {
     books,
     isLoading,
-    isSuccess: hasBooks,
+    isSuccess,
+    isEmptySuccess,
     isEmptyTitle: !param.hasValue,
     isApiError: isError,
-    isNoBooksError,
     refetch,
     input,
   };
