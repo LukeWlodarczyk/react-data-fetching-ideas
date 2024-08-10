@@ -19,6 +19,9 @@ const useBooks = () => {
     queryKey: [param.value],
     queryFn: () => fetchBooksByTitle(param.value),
     enabled: param.hasValue,
+    retry: false,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
   });
 
   const isSuccess = Boolean(isFetched && books && books.length);
