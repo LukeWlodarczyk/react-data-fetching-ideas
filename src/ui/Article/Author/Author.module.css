@@ -1,0 +1,22 @@
+.coAuthor {
+    opacity: 0;
+    position: relative;
+    padding-left: 50px;
+    text-decoration: underline;
+}
+
+.coAuthor:before {
+    content: '';
+    position: absolute;
+    display: inline-block;
+    background: url('./handshake.svg');
+    width: 50px;
+    height: 50px;
+    left: -2px;
+    top: -10px;
+}
+
+
+.author:hover + .coAuthor {
+    opacity: 1;
+}
