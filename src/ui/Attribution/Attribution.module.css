@@ -1,0 +1,35 @@
+.wrapper {
+    width: 100%;
+    background-color: #f67280;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.wrapper:hover .attribution {
+    animation-play-state: paused;
+}
+
+.attribution {
+    min-width: 100%;
+    font-size: 14px;
+    padding: 2px 0;
+    text-wrap: nowrap;
+    text-align: center;
+    animation: move 10s linear infinite;
+    position: relative;
+}
+
+.attributionLink {
+    color: #fff;
+    text-decoration: none;
+}
+
+@keyframes move {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}

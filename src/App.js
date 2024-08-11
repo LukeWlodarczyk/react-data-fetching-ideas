@@ -7,12 +7,14 @@ import ALL_ROUTES, { BOOKS_ROUTES } from './routes';
 import AppContainer from '@/ui/AppContainer';
 import Navigation from '@/ui/Navigation';
 import AppHeading from '@/ui/AppHeading';
+import Attribution from '@/ui/Attribution';
 
 export default function App() {
   return (
     <AppContainer>
       <Router>
         <header>
+          <Attribution />
           <AppHeading>React data fetching ideas</AppHeading>
           <Navigation links={BOOKS_ROUTES} />
         </header>
