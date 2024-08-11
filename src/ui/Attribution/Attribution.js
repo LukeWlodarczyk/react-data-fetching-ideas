@@ -3,7 +3,9 @@ import styles from './Attribution.module.css';
 const Attribution = ({ children }) => (
   <>
     <p className={styles.attribution}>{children}</p>
-    <p className={styles.attribution}>{children}</p>
+    <p aria-hidden={true} className={styles.attribution}>
+      {children}
+    </p>
   </>
 );
 
