@@ -1,15 +1,26 @@
-import { NavLink } from "react-router-dom";
+import { useState } from 'react';
+import cn from 'classnames';
 
-import styles from './Navigation.module.css'
+import NavDirectionButton, { NAV_BUTTON_DIRECTION } from './NavDirectionButton';
+import ToggleNavButton from './ToggleNavButton';
+import NavLinks from './NavLinks';
+
+import styles from './Navigation.module.css';
 
 const Navigation = ({ links }) => {
+  const [isOpen, setIsopen] = useState(true);
+  const toggleNav = () => setIsopen((t) => !t);
+
   return (
-    <nav className={styles.nav}>
+    <nav className={cn(styles.nav, { [styles.closed]: !isOpen })}>
+      <NavDirectionButton type={NAV_BUTTON_DIRECTION.BACK} />
+      <NavDirectionButton type={NAV_BUTTON_DIRECTION.FORWARD} />
       <ul className={styles.list}>
-        {links.map(({ path, name }) => <li className={styles.item} key={path}><NavLink className={({ isActive }) => isActive ? styles.active : styles.link} to={path}>{name}</NavLink></li>)}
+        <NavLinks links={links} />
       </ul>
+      <ToggleNavButton onClick={toggleNav} />
     </nav>
   );
-}
+};
 
 export default Navigation;
