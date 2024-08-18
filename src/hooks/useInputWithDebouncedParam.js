@@ -1,35 +1,36 @@
-import { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import useDebounce from './useDebounce';
+import { useEffect } from 'react';
+
+import useInput from './useInput';
+import useDebouncedParam from './useDebouncedParam';
 
 const useInputWithDebouncedParam = ({ debounce = 300, paramName } = {}) => {
-  const [searchParams, setSearchParams] = useSearchParams(
-    new URLSearchParams({ [paramName]: '' })
-  );
-  const dSetParam = useDebounce(setSearchParams, debounce);
-  const param = searchParams.get(paramName) || '';
+  const param = useDebouncedParam({
+    debounce,
+    paramName,
+    defaultValue: '',
+  });
 
-  const [inputValue, setInputValue] = useState(param);
+  const input = useInput({ defaultValue: param.value });
 
   useEffect(() => {
-    setInputValue(param);
-  }, [param]);
+    input.setValue(param.value);
+  }, [param.value]);
 
   const onChange = (e) => {
-    const newInputValue = e.target.value;
-    setInputValue(newInputValue);
-    dSetParam({ [paramName]: newInputValue }, { replace: false });
+    const newValue = e.target.value;
+    input.setValue(newValue);
+    param.dSetSelectedParam(newValue);
   };
 
   return {
     input: {
-      value: inputValue,
-      hasValue: Boolean(inputValue.trim()),
-      onChange: onChange,
+      value: input.value,
+      hasValue: Boolean(input.value.trim()),
+      onChange,
     },
     param: {
-      value: param,
-      hasValue: Boolean(param.trim()),
+      value: param.value,
+      hasValue: Boolean(param.value.trim()),
     },
   };
 };
