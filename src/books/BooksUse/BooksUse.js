@@ -21,11 +21,18 @@ const Books = () => {
 
   return (
     <Page>
-      <BasicInput autoFocus value={input.value} onChange={input.onChange} />
+      <BasicInput
+        autoFocus
+        name="title"
+        placeholder="book title..."
+        value={input.value}
+        onChange={input.onChange}
+      />
       {!param.hasValue && <BooksListStates.EmptyTitle />}
       {param.hasValue && (
         <ErrorBoundary
           FallbackComponent={({ resetErrorBoundary }) => (
+            // TODO: fix retry
             <BooksListStates.Error onRetry={resetErrorBoundary} />
           )}
           resetKeys={[param.value]}

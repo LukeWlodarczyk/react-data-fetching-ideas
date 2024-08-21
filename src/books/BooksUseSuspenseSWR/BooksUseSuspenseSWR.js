@@ -21,7 +21,13 @@ const Books = () => {
 
   return (
     <Page>
-      <BasicInput autoFocus value={input.value} onChange={input.onChange} />
+      <BasicInput
+        autoFocus
+        name="title"
+        placeholder="book title..."
+        value={input.value}
+        onChange={input.onChange}
+      />
       <ErrorBoundary
         FallbackComponent={({ resetErrorBoundary }) => (
           <BooksListStates.Error
