@@ -1,0 +1,17 @@
+.cleaningMan {
+  background-image: url('./svg/cleaning-man.svg');
+}
+
+.podium {
+  background-image: url('./svg/podium.svg');
+}
+
+.medium {
+  width: 120px;
+  height: 120px;
+}
+
+.large {
+  width: 160px;
+  height: 160px;
+}
