@@ -27,7 +27,7 @@ const Books = () => {
         isLoading={isLoading}
         isSuccess={isSuccess}
         isEmpty={isEmptyTitle}
-        isEmptyBooks={isEmptySuccess}
+        isEmptySuccess={isEmptySuccess}
         isError={isApiError}
       />
       {isSuccess && <BooksListStates.Success books={books} />}

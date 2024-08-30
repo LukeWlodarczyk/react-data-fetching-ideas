@@ -5,7 +5,7 @@ const AnimatedSearchInput = ({
   isLoading,
   isSuccess,
   isEmpty,
-  isEmptyBooks,
+  isEmptySuccess,
   isError,
   ...props
 }) => (
@@ -13,7 +13,7 @@ const AnimatedSearchInput = ({
     isLoading={isLoading}
     isSuccess={isSuccess}
     isEmpty={isEmpty}
-    isEmptyBooks={isEmptyBooks}
+    isEmptySuccess={isEmptySuccess}
     isError={isError}
   >
     <Basic {...props} />

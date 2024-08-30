@@ -6,7 +6,7 @@ const Animation = ({
   isLoading,
   isSuccess,
   isEmpty,
-  isEmptyBooks,
+  isEmptySuccess,
   isError,
   children,
 }) => (
@@ -17,7 +17,7 @@ const Animation = ({
         [styles.loading]: isLoading,
         [styles.success]: isSuccess,
         [styles.empty]: isEmpty,
-        [styles.emptyBooks]: isEmptyBooks,
+        [styles.emptySuccess]: isEmptySuccess,
         [styles.error]: isError,
       },
     ])}
