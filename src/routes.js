@@ -43,49 +43,49 @@ export const BASIC_ROUTES = [
 
 export const BOOKS_ROUTES = [
   {
-    path: '/no-lib-1',
+    path: '/modules/no-lib-1',
     name: 'No libs #1',
     element: <BooksStandard />,
     preload: BooksStandard.preload,
   },
   {
-    path: '/no-lib-2',
+    path: '/modules/no-lib-2',
     name: 'No libs #2',
     element: <BooksStandard2 />,
     preload: BooksStandard2.preload,
   },
   {
-    path: '/swr',
+    path: '/modules/swr',
     name: 'SWR',
     element: <BooksUseSWR />,
     preload: BooksUseSWR.preload,
   },
   {
-    path: '/tanstack-query',
+    path: '/modules/tanstack-query',
     name: 'TanStack Query',
     element: <BooksUseQuery />,
     preload: BooksUseQuery.preload,
   },
   {
-    path: '/resource-suspense',
+    path: '/modules/resource-suspense',
     name: 'Resource Suspense',
     element: <BooksResourceSuspene />,
     preload: BooksResourceSuspene.preload,
   },
   {
-    path: '/swr-suspense',
+    path: '/modules/swr-suspense',
     name: 'SWR Suspense',
     element: <BooksUseSuspenseSWR />,
     preload: BooksUseSuspenseSWR.preload,
   },
   {
-    path: '/tanstack-query-suspense',
+    path: '/modules/tanstack-query-suspense',
     name: 'TanStack Query Suspense',
     element: <BooksUseSuspenseQuery />,
     preload: BooksUseSuspenseQuery.preload,
   },
   {
-    path: '/reac-use',
+    path: '/modules/reac-use',
     name: 'React.use',
     element: <BooksUse />,
     preload: BooksUse.preload,
