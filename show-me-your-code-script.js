@@ -1,48 +1,50 @@
 const fs = require('fs');
 const path = require('path');
 
-const buildObjectFromDirectory = (directories) => {
-  const result = {};
+const createNodesTree = (dirPaths) =>
+  dirPaths.map((dirPath) => ({
+    name: path.basename(dirPath),
+    nodes: processPath(dirPath),
+  }));
 
-  directories.forEach((directory) => {
-    const directoryName = path.basename(directory);
-    result[directoryName] = processDirectory(directory);
-  });
+const processPath = (dirPath) => {
+  const result = [];
+
+  try {
+    const items = fs.readdirSync(dirPath);
+
+    items.forEach((item) => {
+      const itemPath = path.join(dirPath, item);
+      const stats = fs.statSync(itemPath);
+
+      if (stats.isDirectory())
+        result.push({
+          name: item,
+          nodes: processPath(itemPath),
+        });
+      else
+        result.push({
+          name: path.basename(item),
+          content: fs.readFileSync(itemPath, 'utf8'),
+        });
+    });
+  } catch (error) {
+    console.error(`Error processing directory path: ${dirPath}`, error);
+  }
 
   return result;
 };
 
-const processDirectory = (directory) => {
-  const result = {};
-  const files = fs.readdirSync(directory);
+const generateImplementation = (paths) => {
+  const nodesTree = createNodesTree(paths);
+  const implementationFile = `export default ${JSON.stringify(nodesTree, null, 2)};`;
 
-  files.forEach((file) => {
-    const filePath = path.join(directory, file);
-    const stats = fs.statSync(filePath);
-
-    if (stats.isDirectory()) {
-      // Rekurencyjne przeszukiwanie podfolderów
-      result[file] = processDirectory(filePath);
-    } else {
-      const fileContent = fs.readFileSync(filePath, 'utf8');
-      const fileNameWithoutExt = path.basename(file, path.extname(file));
-      result[fileNameWithoutExt] = fileContent;
-    }
-  });
-
-  return result;
-};
-
-const generateImplementation = (folders) => {
-  const implementationObject = buildObjectFromDirectory(folders);
-  const implementationContent = `export default ${JSON.stringify(implementationObject, null, 2)};`;
-
-  fs.writeFileSync(
-    './src/modules-implementation.js',
-    implementationContent,
-    'utf8'
-  );
-  console.log('modules-implementation.js generated!');
+  try {
+    fs.writeFileSync('./src/implementation.js', implementationFile, 'utf8');
+    console.log('implementation.js generated successfully!');
+  } catch (error) {
+    console.error('Error writing implementation file:', error);
+  }
 };
 
 generateImplementation(['./src/api', './src/books', './src/hooks']);
