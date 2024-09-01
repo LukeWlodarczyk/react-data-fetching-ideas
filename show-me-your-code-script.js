@@ -5,6 +5,7 @@ const createNodesTree = (dirPaths) =>
   dirPaths.map((dirPath) => ({
     name: path.basename(dirPath),
     nodes: processPath(dirPath),
+    path: path.basename(dirPath),
   }));
 
 const processPath = (dirPath) => {
@@ -21,11 +22,13 @@ const processPath = (dirPath) => {
         result.push({
           name: item,
           nodes: processPath(itemPath),
+          path: itemPath,
         });
       else
         result.push({
           name: path.basename(item),
           content: fs.readFileSync(itemPath, 'utf8'),
+          path: itemPath,
         });
     });
   } catch (error) {
