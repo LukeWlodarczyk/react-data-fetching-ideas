@@ -6,6 +6,32 @@
   background-image: url('./svg/podium.svg');
 }
 
+.square {
+  background-image: url('./svg/square.svg');
+}
+
+.shield {
+  background-image: url('./svg/shield.svg');
+}
+
+.pyramid {
+  background-image: url('./svg/pyramid.svg');
+}
+
+.atom {
+  background-image: url('./svg/atom.svg');
+}
+
+.xx-small {
+  width: 20px;
+  height: 20px;
+}
+
+.x-small {
+  width: 30px;
+  height: 30px;
+}
+
 .medium {
   width: 120px;
   height: 120px;
