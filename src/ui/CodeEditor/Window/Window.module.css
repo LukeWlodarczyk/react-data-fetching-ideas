@@ -1,0 +1,42 @@
+.window {
+  --header-height: 30px;
+  --window-offeset: 130px;
+  position: fixed;
+  bottom: 0;
+  transition: 0.3s;
+  height: 70%;
+  width: inherit;
+  max-width: inherit;
+  border: 3px solid black;
+  border-radius: 8px;
+  overflow: hidden;
+  transform: translateY(calc(100% - var(--window-offeset)));
+  background: #fff;
+  opacity: 0.3;
+}
+
+.window {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.content {
+  display: flex;
+  height: calc(100% - var(--header-height)) !important;
+}
+
+.header {
+  height: var(--header-height);
+  width: 100%;
+  border-bottom: 3px solid black;
+}
+
+.main {
+  width: 80%;
+  overflow: scroll !important;
+}
+
+.sidepanel {
+  width: 20%;
+  overflow: scroll !important;
+}
