@@ -1,5 +1,7 @@
-import { PanelGroup, Panel, PanelResizeHandle } from 'react-resizable-panels';
+import { PanelGroup, Panel } from 'react-resizable-panels';
 import styles from './Window.module.css';
+
+import ResizeHandle from './ResizeHandle';
 
 const Window = ({ main, sidePanel, header }) => (
   <article className={styles.window}>
@@ -13,7 +15,7 @@ const Window = ({ main, sidePanel, header }) => (
       >
         {sidePanel}
       </Panel>
-      <PanelResizeHandle />
+      <ResizeHandle />
       <Panel className={styles.main} defaultSize={70} minSize={50}>
         {main}
       </Panel>

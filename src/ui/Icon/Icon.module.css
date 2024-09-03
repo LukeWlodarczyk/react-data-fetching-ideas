@@ -22,6 +22,10 @@
   background-image: url('./svg/atom.svg');
 }
 
+.stuck {
+  background-image: url('./svg/stuck.svg');
+}
+
 .xx-small {
   width: 20px;
   height: 20px;

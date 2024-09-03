@@ -1,0 +1,42 @@
+.handle {
+  height: 100%;
+  width: 24px;
+  padding: 2px;
+  border-left: 1px solid black;
+  transition: 0.2s;
+}
+
+.handleInner {
+  transition: 0.3s;
+  border-radius: 4px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.handle[data-resize-handle-state='hover'] .handleInner {
+  background-color: #f672804d;
+}
+
+.handle[data-resize-handle-state='hover'] .icon {
+  transform: scale(0.9);
+}
+
+.handle[data-resize-handle-state='drag'] {
+  padding: 3px;
+}
+
+.handle[data-resize-handle-state='drag'] .handleInner {
+  background-color: #f6727f80;
+}
+
+.handle[data-resize-handle-state='drag'] .icon {
+  transform: scale(1);
+}
+
+.icon {
+  margin-left: -5px;
+  margin-right: -5px;
+  transform: scale(0.8);
+  transition: 0.2s;
+}
