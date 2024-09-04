@@ -1,12 +1,30 @@
 import { PanelGroup, Panel } from 'react-resizable-panels';
+import { Rnd } from 'react-rnd';
 import styles from './Window.module.css';
 
 import ResizeHandle from './ResizeHandle';
 
+const AUTO_SAVE_ID = 'codeEditor';
+
 const Window = ({ main, sidePanel, header }) => (
-  <article className={styles.window}>
+  <Rnd
+    default={{
+      x: 15,
+      y: 235,
+      width: 140,
+      height: 32,
+    }}
+    minWidth={140}
+    minHeight={32}
+    dragHandleClassName={styles.header}
+    className={styles.window}
+  >
     <header className={styles.header}>{header}</header>
-    <PanelGroup className={styles.content} direction="horizontal">
+    <PanelGroup
+      autoSaveId={AUTO_SAVE_ID}
+      className={styles.content}
+      direction="horizontal"
+    >
       <Panel
         className={styles.sidepanel}
         defaultSize={30}
@@ -20,7 +38,7 @@ const Window = ({ main, sidePanel, header }) => (
         {main}
       </Panel>
     </PanelGroup>
-  </article>
+  </Rnd>
 );
 
 export default Window;

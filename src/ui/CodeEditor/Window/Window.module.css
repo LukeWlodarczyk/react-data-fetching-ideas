@@ -1,23 +1,11 @@
 .window {
   --header-height: 30px;
-  --window-offeset: 130px;
-  position: fixed;
-  bottom: 0;
-  transition: 0.3s;
-  height: 70%;
-  width: inherit;
-  max-width: inherit;
+  z-index: 2;
+  display: block;
   border: 3px solid black;
   border-radius: 8px;
   overflow: hidden;
-  transform: translateY(calc(100% - var(--window-offeset)));
   background: #fff;
-  opacity: 0.3;
-}
-
-.window {
-  transform: translateY(0);
-  opacity: 1;
 }
 
 .content {
@@ -34,6 +22,7 @@
 .main {
   width: 80%;
   overflow: scroll !important;
+  background-color: #f2f1f8;
 }
 
 .sidepanel {
