@@ -1,0 +1,17 @@
+.wrapper {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f672804d;
+  cursor: grab;
+}
+
+.fileName {
+  font-size: 14px;
+  letter-spacing: 1px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-wrap: nowrap;
+  user-select: none;
+}
