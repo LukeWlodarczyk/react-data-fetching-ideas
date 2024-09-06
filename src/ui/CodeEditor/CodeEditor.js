@@ -7,6 +7,7 @@ import FileSystem from './FileSystem';
 
 import { minLinesNumber } from './utils';
 
+//Exacute `npm run generate-code-editor-nodes` to create up to date nodes
 import nodes from './script/result';
 
 const CodeEditor = () => {
