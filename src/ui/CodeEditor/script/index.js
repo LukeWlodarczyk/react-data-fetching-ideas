@@ -38,16 +38,16 @@ const processPath = (dirPath) => {
   return result;
 };
 
-const generateImplementation = (paths) => {
+const generate = (paths) => {
   const nodesTree = createNodesTree(paths);
   const file = `export default ${JSON.stringify(nodesTree, null, 2)};`;
 
   try {
     fs.writeFileSync('./src/ui/CodeEditor/script/result.js', file, 'utf8');
-    console.log('implementation.js generated successfully!');
+    console.log('result.js generated successfully!');
   } catch (error) {
-    console.error('Error writing implementation file:', error);
+    console.error('Error writing result.js file:', error);
   }
 };
 
-generateImplementation(['./src/api', './src/books', './src/hooks']);
+generate(['./src/api', './src/books', './src/hooks']);
