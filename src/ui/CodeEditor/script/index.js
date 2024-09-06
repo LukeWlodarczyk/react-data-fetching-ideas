@@ -40,10 +40,10 @@ const processPath = (dirPath) => {
 
 const generateImplementation = (paths) => {
   const nodesTree = createNodesTree(paths);
-  const implementationFile = `export default ${JSON.stringify(nodesTree, null, 2)};`;
+  const file = `export default ${JSON.stringify(nodesTree, null, 2)};`;
 
   try {
-    fs.writeFileSync('./src/implementation.js', implementationFile, 'utf8');
+    fs.writeFileSync('./src/ui/CodeEditor/script/result.js', file, 'utf8');
     console.log('implementation.js generated successfully!');
   } catch (error) {
     console.error('Error writing implementation file:', error);

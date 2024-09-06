@@ -7,7 +7,7 @@ import FileSystem from './FileSystem';
 
 import { minLinesNumber } from './utils';
 
-import implementation from '../../implementation';
+import nodes from './script/result';
 
 const CodeEditor = () => {
   const [activeNode, setActiveNode] = useState({
