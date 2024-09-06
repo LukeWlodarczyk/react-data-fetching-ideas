@@ -8,6 +8,7 @@ import AppContainer from '@/ui/AppContainer';
 import Navigation from '@/ui/Navigation';
 import AppHeading from '@/ui/AppHeading';
 import Attribution from '@/ui/Attribution';
+import CodeEditor from '@/ui/CodeEditor';
 
 export default function App() {
   return (
@@ -29,6 +30,7 @@ export default function App() {
             ))}
           </Routes>
         </main>
+        <CodeEditor />
       </Router>
     </AppContainer>
   );
