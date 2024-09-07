@@ -5,17 +5,23 @@ import TopBar from './TopBar';
 import Code from './Code';
 import FileSystem from './FileSystem';
 
+import useActiveModuleName from './useActiveModuleName';
+
 import { minLinesNumber } from './utils';
 
 //Exacute `npm run generate-code-editor-nodes` to create up to date nodes
 import nodes from './script/result';
 
 const CodeEditor = () => {
+  const activeModuleName = useActiveModuleName();
+
   const [activeNode, setActiveNode] = useState({
     name: '',
     content: '',
     path: '',
   });
+
+  if (!activeModuleName) return null;
 
   const title = `Code Editor ${activeNode.name && `- ${activeNode.name}`}`;
 
@@ -24,7 +30,7 @@ const CodeEditor = () => {
       header={<TopBar title={title} />}
       sidePanel={
         <FileSystem
-          nodes={implementation}
+          nodes={nodes}
           onSelect={setActiveNode}
           activeNodePath={activeNode.path}
         />
