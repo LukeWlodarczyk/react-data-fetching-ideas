@@ -8,3 +8,19 @@
 - useSWR and Suspense ([swr suspense](https://swr.vercel.app/docs/suspense))
 - useSuspenseQuery and Suspense ([react-query suspense](https://tanstack.com/query/latest/docs/framework/react/guides/suspense))
 - React.use experimental api and Suspense ([React.use](https://react.dev/reference/react/use)) 🚧
+
+## How to run app locally?
+
+```
+$ npm i
+```
+
+```
+$ npm run generate-code-editor-nodes
+```
+
+```
+$ npm start
+```
+
+### Have fun!
