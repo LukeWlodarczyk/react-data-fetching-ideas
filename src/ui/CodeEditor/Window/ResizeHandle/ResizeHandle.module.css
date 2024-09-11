@@ -1,6 +1,6 @@
 .handle {
   height: 100%;
-  width: 24px;
+  width: 26px;
   padding: 2px;
   border-left: 1px solid black;
   transition: 0.2s;
@@ -12,6 +12,7 @@
   height: 100%;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .handle[data-resize-handle-state='hover'] .handleInner {
