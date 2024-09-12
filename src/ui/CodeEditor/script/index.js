@@ -50,4 +50,4 @@ const generate = (paths) => {
   }
 };
 
-generate(['./src/api', './src/books', './src/hooks']);
+generate(['./src/api', './src/modules', './src/hooks']);
