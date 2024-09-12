@@ -10,23 +10,23 @@ const lazyWithPreload = (cb) => {
 };
 
 const BooksStandard = lazyWithPreload(
-  () => import('./books/BooksStandard/BooksStandard')
+  () => import('./modules/BooksStandard/BooksStandard')
 );
 const BooksStandard2 = lazyWithPreload(
-  () => import('./books/BooksStandard2/BooksStandard')
+  () => import('./modules/BooksStandard2/BooksStandard')
 );
-const BooksUseSWR = lazyWithPreload(() => import('./books/BooksUseSWR'));
-const BooksUseQuery = lazyWithPreload(() => import('./books/BooksUseQuery'));
+const BooksUseSWR = lazyWithPreload(() => import('./modules/BooksUseSWR'));
+const BooksUseQuery = lazyWithPreload(() => import('./modules/BooksUseQuery'));
 const BooksResourceSuspene = lazyWithPreload(
-  () => import('./books/BooksResourceSuspene')
+  () => import('./modules/BooksResourceSuspene')
 );
 const BooksUseSuspenseSWR = lazyWithPreload(
-  () => import('./books/BooksUseSuspenseSWR')
+  () => import('./modules/BooksUseSuspenseSWR')
 );
 const BooksUseSuspenseQuery = lazyWithPreload(
-  () => import('./books/BooksUseSuspenseQuery')
+  () => import('./modules/BooksUseSuspenseQuery')
 );
-const BooksUse = lazyWithPreload(() => import('./books/BooksUse'));
+const BooksUse = lazyWithPreload(() => import('./modules/BooksUse'));
 
 export const BASIC_ROUTES = [
   {
@@ -43,7 +43,7 @@ export const BASIC_ROUTES = [
 
 export const BOOKS_ROUTES = [
   {
-    path: '/modules/no-lib-1',
+    path: '/modules/BooksStandard',
     name: 'No libs #1',
     element: <BooksStandard />,
     preload: BooksStandard.preload,
