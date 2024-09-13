@@ -21,3 +21,6 @@ export const filterInactiveModules = (nodes, activeModuleNodeName) => {
       : node
   );
 };
+
+export const createCodeEditorTitle = (activeNodeName) =>
+  `Code Editor${activeNodeName && ` - ${activeNodeName}`}`;

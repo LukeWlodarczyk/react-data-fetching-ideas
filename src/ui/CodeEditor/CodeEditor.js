@@ -7,7 +7,10 @@ import FileSystem from './FileSystem';
 
 import useActiveModuleName from './useActiveModuleName';
 
-import { minLinesNumber } from './utils';
+import {
+  minLinesNumber,
+  createCodeEditorTitle,
+} from './utils';
 
 //Exacute `npm run generate-code-editor-nodes` to create up to date nodes
 import nodes from './script/result';
@@ -23,7 +26,7 @@ const CodeEditor = () => {
 
   if (!activeModuleName) return null;
 
-  const title = `Code Editor ${activeNode.name && `- ${activeNode.name}`}`;
+  const title = createCodeEditorTitle(activeNode.name);
 
   return (
     <Window
