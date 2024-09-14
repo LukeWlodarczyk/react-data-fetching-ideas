@@ -5,21 +5,21 @@ const ERROR_BOUNDARY_RESET_REASON = {
   IMPERATIVE_API: 'imperative-api',
 };
 
-const getKey = (reset) => {
-  switch (reset.reason) {
+const getKey = (details) => {
+  switch (details.reason) {
     case ERROR_BOUNDARY_RESET_REASON.KEYS:
-      return reset.prev[0];
+      return details.prev[0];
     case ERROR_BOUNDARY_RESET_REASON.IMPERATIVE_API:
-      return reset.args[0];
+      return details.args[0];
     default:
-      throw Error(`Unknown ErrorBoundary reset reason: ${reset.reason}`);
+      throw Error(`Unknown ErrorBoundary reset reason: ${details.reason}`);
   }
 };
 
 const useSWRErrorBoundaryReset = () => {
   const { mutate } = useSWRConfig();
-  const reset = (reset) => {
-    const key = getKey(reset);
+  const reset = (details) => {
+    const key = getKey(details);
 
     mutate(key, undefined, { revalidate: true });
   };
