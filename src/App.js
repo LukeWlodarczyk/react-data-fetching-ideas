@@ -2,7 +2,7 @@ import './styles.css';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import ALL_ROUTES, { BOOKS_ROUTES } from './routes';
+import ALL_ROUTES, { MODULES_ROUTES } from './routes';
 
 import AppContainer from '@/ui/AppContainer';
 import Navigation from '@/ui/Navigation';
@@ -17,7 +17,7 @@ export default function App() {
         <header>
           <Attribution />
           <AppHeading>React data fetching ideas</AppHeading>
-          <Navigation links={BOOKS_ROUTES} />
+          <Navigation links={MODULES_ROUTES} />
         </header>
         <main>
           <Routes>

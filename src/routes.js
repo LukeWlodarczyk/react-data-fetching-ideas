@@ -41,7 +41,7 @@ export const BASIC_ROUTES = [
   },
 ];
 
-export const BOOKS_ROUTES = [
+export const MODULES_ROUTES = [
   {
     path: '/modules/BooksStandard',
     name: 'No libs #1',
@@ -92,4 +92,4 @@ export const BOOKS_ROUTES = [
   },
 ];
 
-export default [...BASIC_ROUTES, ...BOOKS_ROUTES];
+export default [...BASIC_ROUTES, ...MODULES_ROUTES];
